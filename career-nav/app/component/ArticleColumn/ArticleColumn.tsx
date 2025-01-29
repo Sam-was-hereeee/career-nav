@@ -31,7 +31,7 @@ const ArticleColumn = () => {
       ))}
 
       <Link
-        className="w-[240px] h-[48px] rounded-[20px] p-[12px] bg-black text-white text-center hover:bg-black/40"
+        className="w-[240px] h-[48px] rounded-[20px] p-[12px] bg-black text-white text-center hover:bg-black/40 transition-all duration-300 ease-in"
         href="/careerProfile"
       >
         閱讀更多

@@ -21,8 +21,9 @@ const SearchBar = () => {
           name="industry"
           id="industry"
           className="w-[82px] h-[30px] rounded-[10px] px-[10px] py-[3px] appearance-none"
+          defaultValue={"default"}
         >
-          <option value="0" selected>
+          <option value="default" disabled>
             產業
           </option>
         </select>
@@ -39,8 +40,9 @@ const SearchBar = () => {
           name="career"
           id="career"
           className="w-[82px] h-[30px] rounded-[10px] px-[10px] py-[3px] appearance-none"
+          defaultValue={"default"}
         >
-          <option value="0" selected>
+          <option value="default" disabled>
             職業
           </option>
         </select>
@@ -57,8 +59,9 @@ const SearchBar = () => {
           name="corpType"
           id="corpType"
           className="w-[115px] h-[30px] rounded-[10px] px-[10px] py-[3px] appearance-none"
+          defaultValue={"default"}
         >
-          <option value="0" selected>
+          <option value="default" disabled>
             企業類別
           </option>
         </select>
@@ -67,7 +70,7 @@ const SearchBar = () => {
           src="/ExploreProfile/selectArrow.svg"
         />
       </label>
-      <button className="min-w-[135px] min-h-[30px] rounded-[10px] text-center text-white bg-black hover:bg-white/20">
+      <button className="min-w-[135px] min-h-[30px] rounded-[10px] text-center text-white bg-black hover:bg-white/20 transition-all duration-300 ease-in">
         搜尋
       </button>
     </div>

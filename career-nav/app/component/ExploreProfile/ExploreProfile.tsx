@@ -11,7 +11,7 @@ const ExploreProfile = () => {
       </p>
       <SearchBar></SearchBar>
       <Link
-        className="w-[240px] h-[48px] bg-white/0 hover:bg-white/20 transition-opacity text-[#D9D9D9] text-center border-[1px] border-[#D9D9D9] rounded-[20px] p-[12px]"
+        className="w-[240px] h-[48px] bg-white/0 hover:bg-white/20 transition-all duration-300 ease-in text-[#D9D9D9] text-center border-[1px] border-[#D9D9D9] rounded-[20px] p-[12px]"
         href="/careerProfile"
       >
         查看所有職涯檔案

@@ -8,6 +8,11 @@ interface Props {
 }
 
 const NaviBar = ({ currentPage }: Props) => {
+  let page = {
+    title: ["主頁", "學長姐職涯檔案", "職業訪談", "關於職航", "更多"],
+    href: ["/", "/careerProfile", "/interview", "/about", "/more"],
+  };
+
   return (
     <div className="flex fixed top-0 w-full h-[100px] items-center justify-between bg-white z-50">
       <div className="flex items-center">
@@ -22,46 +27,18 @@ const NaviBar = ({ currentPage }: Props) => {
       </div>
       <div className="flex items-center">
         <div className="flex text-black text-base font-weight:400 text-nowrap gap-x-[40px] items-center">
-          <Link
-            className={
-              "hover:font-bold" + (currentPage === 0 ? " font-bold" : "")
-            }
-            href="/"
-          >
-            主頁
-          </Link>
-          <Link
-            className={
-              "hover:font-bold" + (currentPage === 1 ? " font-bold" : "")
-            }
-            href="/careerProfile"
-          >
-            學長姐職涯檔案
-          </Link>
-          <Link
-            className={
-              "hover:font-bold" + (currentPage === 2 ? " font-bold" : "")
-            }
-            href="/interview"
-          >
-            職業訪談
-          </Link>
-          <Link
-            className={
-              "hover:font-bold" + (currentPage === 3 ? " font-bold" : "")
-            }
-            href="/about"
-          >
-            關於職航
-          </Link>
-          <Link
-            className={
-              "hover:font-bold" + (currentPage === 4 ? " font-bold" : "")
-            }
-            href="/more"
-          >
-            更多
-          </Link>
+          {page.title.map((title, index) => (
+            <Link
+              className={
+                "hover:font-bold transition-all duration-200 ease-in" +
+                (currentPage === index ? " font-bold" : "")
+              }
+              key={index}
+              href={page.href[index]}
+            >
+              {title}
+            </Link>
+          ))}
           <SearchBar></SearchBar>
         </div>
         <AccountBtn></AccountBtn>

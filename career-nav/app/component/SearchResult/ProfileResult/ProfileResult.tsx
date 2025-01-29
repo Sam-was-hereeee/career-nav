@@ -1,6 +1,8 @@
 import test from "node:test";
 import React from "react";
 import Profile from "../../Profile/Profile";
+import { Result } from "postcss";
+import ResultPageBtn from "./ResultPageBtn/ResultPageBtn";
 
 const ProfileResult = () => {
   let test = [0, 1, 2];
@@ -11,7 +13,7 @@ const ProfileResult = () => {
         <p className="text-base font-normal">共有 20 筆資料</p>
       </div>
       {test.map((profileBox, index) => (
-        <div key={index} className="flex w-[963px] h-[341px] gap-[40px]">
+        <div key={index} className="flex h-[341px] gap-[40px]">
           {test.map((profile, index) => (
             <Profile
               key={index}
@@ -23,6 +25,7 @@ const ProfileResult = () => {
           ))}
         </div>
       ))}
+      <ResultPageBtn />
     </div>
   );
 };

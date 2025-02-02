@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import AccountBtn from "./AccountBtn/AccountBtn";
 
 interface Props {
-  currentPage: number; //0、1、2、3、4 將目前所在頁面的navigation文字功能取消並加粗體
+  currentPage: number; //0、1、2、3、4、5(login/register) 將目前所在頁面的navigation文字功能取消並加粗體
 }
 
 const NaviBar = ({ currentPage }: Props) => {
@@ -41,7 +41,7 @@ const NaviBar = ({ currentPage }: Props) => {
           ))}
           <SearchBar></SearchBar>
         </div>
-        <AccountBtn></AccountBtn>
+        <AccountBtn currentPage={currentPage} />
       </div>
     </div>
   );

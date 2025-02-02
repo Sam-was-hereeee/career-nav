@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import style from "/SearchBar.module.css";
+import TagSelect from "../../TagSelect/TagSelect";
 
 const SearchBar = () => {
   return (
@@ -13,63 +13,15 @@ const SearchBar = () => {
         type="text"
         placeholder="｜搜尋職稱或領域關鍵字"
       />
-      <label
-        className="flex relative w-[82px] h-[30px] items-center"
-        htmlFor="industry"
-      >
-        <select
-          name="industry"
-          id="industry"
-          className="w-[82px] h-[30px] rounded-[10px] px-[10px] py-[3px] appearance-none"
-          defaultValue={"default"}
-        >
-          <option value="default" disabled>
-            產業
-          </option>
-        </select>
-        <img
-          className="absolute w-6 h-6 right-[6px]"
-          src="/ExploreProfile/selectArrow.svg"
-        />
-      </label>
-      <label
-        className="flex relative w-[82px] h-[30px] items-center"
-        htmlFor="career"
-      >
-        <select
-          name="career"
-          id="career"
-          className="w-[82px] h-[30px] rounded-[10px] px-[10px] py-[3px] appearance-none"
-          defaultValue={"default"}
-        >
-          <option value="default" disabled>
-            職業
-          </option>
-        </select>
-        <img
-          className="absolute w-6 h-6 right-[6px]"
-          src="/ExploreProfile/selectArrow.svg"
-        />
-      </label>
-      <label
-        className="flex relative w-[115px] h-[30px] items-center"
-        htmlFor="corpType"
-      >
-        <select
-          name="corpType"
-          id="corpType"
-          className="w-[115px] h-[30px] rounded-[10px] px-[10px] py-[3px] appearance-none"
-          defaultValue={"default"}
-        >
-          <option value="default" disabled>
-            企業類別
-          </option>
-        </select>
-        <img
-          className="absolute w-6 h-6 right-[6px]"
-          src="/ExploreProfile/selectArrow.svg"
-        />
-      </label>
+      <TagSelect id="industry" option={["test"]} opValue={["test"]}>
+        產業
+      </TagSelect>
+      <TagSelect id="career" option={[]} opValue={[]}>
+        職業
+      </TagSelect>
+      <TagSelect id="corpType" option={[]} opValue={[]}>
+        企業類別
+      </TagSelect>
       <button className="min-w-[135px] min-h-[30px] rounded-[10px] text-center text-white bg-black hover:bg-white/20 transition-all duration-300 ease-in">
         搜尋
       </button>

@@ -9,7 +9,7 @@ const ExploreProfile = () => {
       <p className="text-base font-normal text-white">
         學長姐指引，讓你能更有自信地規劃職涯、進行跨領域嘗試
       </p>
-      <SearchBar></SearchBar>
+      <SearchBar />
       <Link
         className="w-[240px] h-[48px] bg-white/0 hover:bg-white/20 transition-all duration-300 ease-in text-[#D9D9D9] text-center border-[1px] border-[#D9D9D9] rounded-[20px] p-[12px]"
         href="/careerProfile"

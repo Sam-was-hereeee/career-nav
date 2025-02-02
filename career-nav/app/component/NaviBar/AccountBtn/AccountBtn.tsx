@@ -9,7 +9,7 @@ interface Props {
 
 const AccountBtn = ({ currentPage }: Props) => {
   return (
-    <div>
+    <div className="flex items-center ml-[40px]">
       <Link
         className={
           "text-base font-bold hover:text-black transition-all duration-200 ease-in" +

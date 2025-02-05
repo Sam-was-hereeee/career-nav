@@ -1,18 +1,19 @@
 import React from "react";
 import NaviBar from "../component/NaviBar/NaviBar";
-import LoginInput from "../component/LoginInput/LoginInput";
-import WishBox from "../component/WishBox/WishBox";
 import Footer from "../component/Footer/Footer";
+import WishBox from "../component/WishBox/WishBox";
+import SearchBar from "../component/ProfilePageCompon/SearchBar/SearchBar";
 
-const loginPage = () => {
+const page = () => {
   return (
     <div>
-      <NaviBar currentPage={5} />
+      <NaviBar currentPage={2} />
       <div className="w-full h-[100px] min-h-[100px]" />
-      <LoginInput></LoginInput>
+      <SearchBar />
+      <WishBox />
       <Footer />
     </div>
   );
 };
 
-export default loginPage;
+export default page;

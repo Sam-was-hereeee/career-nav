@@ -12,7 +12,7 @@ const AccountBtn = ({ currentPage }: Props) => {
     <div className="flex items-center ml-[40px]">
       <Link
         className={
-          "text-base font-bold hover:text-black transition-all duration-200 ease-in" +
+          "text-base font-bold text-nowrap hover:text-black transition-all duration-200 ease-in" +
           (currentPage === 5 ? " text-black" : " text-[#979797]")
         }
         href="/login"

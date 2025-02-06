@@ -5,7 +5,7 @@ import TagSelect from "../../TagSelect/TagSelect";
 
 const SearchBar = () => {
   return (
-    <div className="flex w-full h-[50px] p-[10px] gap-[10px] items-center justify-center">
+    <form className="flex w-full h-[50px] p-[10px] gap-[10px] items-center justify-center">
       <input
         name="keyword"
         id="keyword"
@@ -22,10 +22,13 @@ const SearchBar = () => {
       <TagSelect id="corpType" option={[]} opValue={[]}>
         企業類別
       </TagSelect>
-      <button className="min-w-[135px] min-h-[30px] rounded-[10px] text-center text-white bg-black hover:bg-white/20 transition-all duration-300 ease-in">
+      <button
+        className="min-w-[135px] min-h-[30px] rounded-[10px] text-center text-white bg-black hover:bg-white/20 transition-all duration-300 ease-in"
+        type="submit"
+      >
         搜尋
       </button>
-    </div>
+    </form>
   );
 };
 

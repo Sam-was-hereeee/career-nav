@@ -14,12 +14,12 @@ const NaviBar = ({ currentPage }: Props) => {
   };
 
   return (
-    <div className="flex fixed top-0 w-full h-[100px] items-center justify-between bg-white z-50">
+    <div className="flex fixed top-0 w-full h-[100px] items-center justify-between bg-[#F1F1EE] z-50">
       <div className="flex items-center">
         <div className="rounded-full bg-black/10 w-[43px] h-[43px] mr-2 ml-4"></div>
         <Link href="/">
           <img
-            className="min-w-[396px] min-h-[68px]"
+            className="min-w-[302px] min-h-[67px]"
             src="/NaviBar/slogan.svg"
             alt="slogan"
           />

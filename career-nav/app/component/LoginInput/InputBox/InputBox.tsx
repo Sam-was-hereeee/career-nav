@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 const InputBox = () => {
-  const [btnClicked, setBtnClicked] = useState(0); //0,1,2
+  const [btnClicked, setBtnClicked] = useState(1); //0,1,2
   return (
     <div className="flex flex-col w-[390px] h-[282px] p-[10px] gap-[10px] items-center">
       <form className="flex flex-col w-[390px] h-[282px] p-[10px] gap-[10px] items-center">

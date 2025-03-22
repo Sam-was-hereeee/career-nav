@@ -12,7 +12,7 @@ export default function Home() {
     <main>
       <div>
         <NaviBar currentPage={0} />
-        <div className="w-full h-[100px] min-h-[100px]" />
+        <div className="w-full h-[98px] min-h-[98px]" />
         <ProductIntro />
         <ExploreProfile />
         <NewsColumn />

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import InputBox from "./InputBox/InputBox";
+import InputBox from "./InputBox";
 
 const LoginInput = () => {
   return (

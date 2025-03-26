@@ -1,5 +1,5 @@
 import React from "react";
-import NaviBar from "../component/NaviBar/NaviBar";
+import NaviBar from "../../components/NaviBar/NaviBar";
 
 const MorePage = () => {
   return (

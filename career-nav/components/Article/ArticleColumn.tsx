@@ -1,5 +1,5 @@
 import React from "react";
-import Article from "../Article/Article";
+import Article from "./Article";
 import Link from "next/link";
 
 const ArticleColumn = () => {

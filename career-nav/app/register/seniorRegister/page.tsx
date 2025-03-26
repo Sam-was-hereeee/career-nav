@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Footer from "@/app/component/Footer/Footer";
-import NaviBar from "@/app/component/NaviBar/NaviBar";
+import Footer from "@/components/Footer/Footer";
+import NaviBar from "@/components/NaviBar/NaviBar";
 import Link from "next/link";
-import RegisterProgress from "@/app/component/RegisterInput/RegisterProgress";
+import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
 import { useRouter } from "next/navigation";
 
 const page = () => {

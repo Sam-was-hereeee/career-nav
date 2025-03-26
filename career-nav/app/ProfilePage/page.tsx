@@ -1,12 +1,12 @@
 import React from "react";
-import NaviBar from "../component/NaviBar/NaviBar";
-import Footer from "../component/Footer/Footer";
-import WishBox from "../component/WishBox/WishBox";
-import SearchBar from "../component/ProfilePageCompon/SearchBar/SearchBar";
-import PersonInfo from "../component/ProfilePageCompon/PersonInfo/PersonInfo";
-import CareerMap from "../component/ProfilePageCompon/CareerMap/CareerMap";
-import QA from "../component/ProfilePageCompon/QA/QA";
-import CommentInput from "../component/ProfilePageCompon/CommentInput/CommentInput";
+import NaviBar from "../../components/NaviBar/NaviBar";
+import Footer from "../../components/Footer/Footer";
+import WishBox from "../../components/WishBox/WishBox";
+import SearchBar from "../../components/ProfilePageCompon/SearchBar";
+import PersonInfo from "../../components/ProfilePageCompon/PersonInfo";
+import CareerMap from "../../components/ProfilePageCompon/CareerMap";
+import QA from "../../components/ProfilePageCompon/QA";
+import CommentInput from "../../components/ProfilePageCompon/CommentInput";
 
 const page = () => {
   return (

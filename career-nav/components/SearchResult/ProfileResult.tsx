@@ -1,8 +1,8 @@
 import test from "node:test";
 import React from "react";
-import Profile from "../../Profile/Profile";
+import Profile from "../Profile/Profile";
 import { Result } from "postcss";
-import ResultPageBtn from "./ResultPageBtn/ResultPageBtn";
+import ResultPageBtn from "./ResultPageBtn";
 
 const ProfileResult = () => {
   let test = [0, 1, 2];

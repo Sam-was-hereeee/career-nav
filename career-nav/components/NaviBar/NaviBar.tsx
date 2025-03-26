@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import SearchBar from "./SearchBar/SearchBar";
-import AccountBtn from "./AccountBtn/AccountBtn";
+import SearchBar from "./SearchBar";
+import AccountBtn from "./AccountBtn";
 
 interface Props {
   currentPage: number; //0、1、2、3、4、5(login/register) 將目前所在頁面的navigation文字功能取消並加粗體

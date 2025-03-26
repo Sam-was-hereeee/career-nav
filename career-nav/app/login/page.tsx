@@ -1,8 +1,8 @@
 import React from "react";
-import NaviBar from "../component/NaviBar/NaviBar";
-import LoginInput from "../component/LoginInput/LoginInput";
-import WishBox from "../component/WishBox/WishBox";
-import Footer from "../component/Footer/Footer";
+import NaviBar from "../../components/NaviBar/NaviBar";
+import LoginInput from "../../components/LoginInput/LoginInput";
+import WishBox from "../../components/WishBox/WishBox";
+import Footer from "../../components/Footer/Footer";
 
 const loginPage = () => {
   return (

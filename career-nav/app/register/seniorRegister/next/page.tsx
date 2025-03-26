@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import Footer from "@/app/component/Footer/Footer";
-import NaviBar from "@/app/component/NaviBar/NaviBar";
+import Footer from "@/components/Footer/Footer";
+import NaviBar from "@/components/NaviBar/NaviBar";
 import Link from "next/link";
-import RegisterProgress from "@/app/component/RegisterInput/RegisterProgress";
-import TextInput from "@/app/component/RegisterInput/TextInput";
-import SelectInput from "@/app/component/RegisterInput/SelectInput";
+import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
+import TextInput from "@/components/RegisterInput/TextInput";
+import SelectInput from "@/components/RegisterInput/SelectInput";
 import { useRouter } from "next/navigation";
 
 const page = () => {

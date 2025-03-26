@@ -1,5 +1,5 @@
 import React from "react";
-import WishInput from "./WishInput/WishInput";
+import WishInput from "./WishInput";
 
 const WishBox = () => {
   return (

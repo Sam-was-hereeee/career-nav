@@ -1,6 +1,6 @@
 import React from "react";
-import ProfileResult from "./ProfileResult/ProfileResult";
-import ArticleResult from "./ArticleResult/ArticleResult";
+import ProfileResult from "./ProfileResult";
+import ArticleResult from "./ArticleResult";
 
 const SearchResult = () => {
   return (

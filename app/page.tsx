@@ -1,11 +1,11 @@
-import ArticleColumn from "../components/Article/ArticleColumn";
-import DisplayProfile from "../components/DisplayProfile/DisplayProfile";
-import ExploreProfile from "../components/ExploreProfile/ExploreProfile";
-import Footer from "../components/Footer/Footer";
-import NaviBar from "../components/NaviBar/NaviBar";
-import NewsColumn from "../components/NewsColumn/NewsColumn";
-import ProductIntro from "../components/ProductIntro/ProductIntro";
-import WishBox from "../components/WishBox/WishBox";
+import ArticleColumn from "@components/Article/ArticleColumn";
+import DisplayProfile from "@components/DisplayProfile/DisplayProfile";
+import ExploreProfile from "@components/ExploreProfile/ExploreProfile";
+import Footer from "@components/Footer/Footer";
+import NaviBar from "@components/NaviBar/NaviBar";
+import NewsColumn from "@components/NewsColumn/NewsColumn";
+import ProductIntro from "@components/ProductIntro/ProductIntro";
+import WishBox from "@components/WishBox/WishBox";
 
 export default function Home() {
   return (

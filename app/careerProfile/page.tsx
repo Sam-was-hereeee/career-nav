@@ -1,10 +1,10 @@
 import React from "react";
-import NaviBar from "../../components/NaviBar/NaviBar";
-import SideBar from "../../components/SideBar/SideBar";
-import WishBox from "../../components/WishBox/WishBox";
-import Footer from "../../components/Footer/Footer";
-import SearchResult from "../../components/SearchResult/SearchResult";
-import SearchProfile from "../../components/SearchProfile/SearchProfile";
+import NaviBar from "@components/NaviBar/NaviBar";
+import SideBar from "@components/SideBar/SideBar";
+import WishBox from "@components/WishBox/WishBox";
+import Footer from "@components/Footer/Footer";
+import SearchResult from "@components/SearchResult/SearchResult";
+import SearchProfile from "@components/SearchProfile/SearchProfile";
 
 const CareerProfilePage = () => {
   return (

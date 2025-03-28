@@ -1,16 +1,16 @@
 "use client";
 
 import React from "react";
-import NaviBar from "../../components/NaviBar/NaviBar";
-import Footer from "../../components/Footer/Footer";
+import NaviBar from "@components/NaviBar/NaviBar";
+import Footer from "@components/Footer/Footer";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import SeniorInput from "../../components/RegisterInput/SeniorInput";
+import SeniorInput from "@/components/RegisterInput/SeniorInput";
 import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
 import TextInput from "@/components/RegisterInput/TextInput";
 import SelectInput from "@/components/RegisterInput/SelectInput";
 
-const registerPage = () => {
+const RegisterPage = () => {
   const [btnClicked, setBtnClicked] = useState(1); //0,1,2
   const router = useRouter();
 
@@ -415,4 +415,4 @@ const registerPage = () => {
   );
 };
 
-export default registerPage;
+export default RegisterPage;

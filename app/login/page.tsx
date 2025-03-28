@@ -1,10 +1,10 @@
 import React from "react";
-import NaviBar from "../../components/NaviBar/NaviBar";
-import LoginInput from "../../components/LoginInput/LoginInput";
-import WishBox from "../../components/WishBox/WishBox";
-import Footer from "../../components/Footer/Footer";
+import NaviBar from "@components/NaviBar/NaviBar";
+import LoginInput from "@components/LoginInput/LoginInput";
+import WishBox from "@components/WishBox/WishBox";
+import Footer from "@components/Footer/Footer";
 
-const loginPage = () => {
+const LoginPage = () => {
   return (
     <div>
       <NaviBar currentPage={5} />
@@ -15,4 +15,4 @@ const loginPage = () => {
   );
 };
 
-export default loginPage;
+export default LoginPage;

@@ -1,5 +1,5 @@
 import React from "react";
-import NaviBar from "../../components/NaviBar/NaviBar";
+import NaviBar from "@components/NaviBar/NaviBar";
 
 const AboutPage = () => {
   return (

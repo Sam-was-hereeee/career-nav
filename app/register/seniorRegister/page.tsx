@@ -7,7 +7,7 @@ import Link from "next/link";
 import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const router = useRouter();
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -66,4 +66,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -18,7 +18,7 @@ const WishInput = () => {
         />
       </label>
       <button
-        className="w-[124px] h-[48px] rounded-[20px] p-[12px] bg-black text-white text-center hover:bg-black/30 transition-all duration-300 ease-in"
+        className="w-[124px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white text-center hover:bg-[#728594]/80 shadow-lg transition-all duration-300 ease-in"
         type="submit"
       >
         許願

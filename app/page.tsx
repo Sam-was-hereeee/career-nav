@@ -1,11 +1,13 @@
+import JoinSeinorBar from "@/components/main_page/JoinSeinorBar";
 import ArticleColumn from "@components/Article/ArticleColumn";
-import DisplayProfile from "@components/DisplayProfile/DisplayProfile";
+import DisplayProfile from "@/components/main_page/DisplayProfile";
 import ExploreProfile from "@components/ExploreProfile/ExploreProfile";
 import Footer from "@components/Footer/Footer";
 import NaviBar from "@components/NaviBar/NaviBar";
-import NewsColumn from "@components/NewsColumn/NewsColumn";
-import ProductIntro from "@components/ProductIntro/ProductIntro";
+import NewsColumn from "@/components/main_page/NewsColumn";
 import WishBox from "@components/WishBox/WishBox";
+import CoreService from "@/components/main_page/CoreService";
+import AboutUs from "@/components/main_page/AboutUs";
 
 export default function Home() {
   return (
@@ -13,10 +15,12 @@ export default function Home() {
       <div>
         <NaviBar currentPage={0} />
         <div className="w-full h-[98px] min-h-[98px]" />
-        <ProductIntro />
+        <JoinSeinorBar />
         <ExploreProfile />
-        <NewsColumn />
+        <CoreService />
+        <AboutUs />
         <DisplayProfile />
+        <NewsColumn />
         <ArticleColumn />
         <WishBox />
         <Footer />

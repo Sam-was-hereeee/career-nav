@@ -16,7 +16,7 @@ const Article = ({
   authorImg,
 }: Props) => {
   return (
-    <div className="flex w-[798px] h-[140px] rounded-[20px] border-[1px] border-black/10 p-[16px] gap-[16px]">
+    <div className="flex w-[798px] h-[140px] rounded-[20px] border-[1px] border-black/10 p-[16px] gap-[16px] shadow-lg">
       <div className="w-[100px] h-[100px] rounded-[10px] bg-[#D9D9D9]/50">
         <img
           id="thumbnail"

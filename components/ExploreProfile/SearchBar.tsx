@@ -19,11 +19,8 @@ const SearchBar = () => {
       <TagSelect id="career" option={[]} opValue={[]}>
         職業
       </TagSelect>
-      <TagSelect id="corpType" option={[]} opValue={[]}>
-        企業類別
-      </TagSelect>
       <button
-        className="min-w-[135px] min-h-[30px] rounded-[10px] text-center text-white bg-black hover:bg-white/20 transition-all duration-300 ease-in"
+        className="min-w-[135px] min-h-[30px] rounded-[10px] text-center text-base text-black font-medium bg-[#E4E2DD] hover:bg-[#E4E2DD]/70 transition-all duration-300 ease-in"
         type="submit"
       >
         搜尋

@@ -1,17 +1,17 @@
 import React from "react";
-import NaviBar from "@components/NaviBar/NaviBar";
+import NaviBar from "@/components/shared_components/NaviBar/NaviBar";
 import LoginInput from "@components/LoginInput/LoginInput";
-import Footer from "@components/Footer/Footer";
+import Footer from "@/components/shared_components/Footer";
 
 const LoginPage = () => {
-    return (
-        <div>
-            <NaviBar currentPage={5} />
-            <div className="w-full h-[100px] min-h-[100px]" />
-            <LoginInput></LoginInput>
-            <Footer />
-        </div>
-    );
+  return (
+    <div>
+      <NaviBar currentPage={5} />
+      <div className="w-full h-[100px] min-h-[100px]" />
+      <LoginInput></LoginInput>
+      <Footer />
+    </div>
+  );
 };
 
 export default LoginPage;

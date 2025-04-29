@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import TagSelect from "../TagSelect/TagSelect";
+import TagSelect from "../shared_components/TagSelect";
 
 const SearchBar = () => {
   return (

@@ -15,6 +15,12 @@ const Footer = () => {
 
   const openDialog = () => {
     unfinishedRef.current?.showModal();
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeDialog = () => {
+    unfinishedRef.current?.close();
+    document.body.style.overflow = "";
   };
 
   return (
@@ -32,12 +38,22 @@ const Footer = () => {
               常見問題
             </button>
             <p className="whitespace-pre">{" | "}</p>
-            <button>隱私問題</button>
+            <button
+              onClick={() => {
+                openDialog();
+              }}
+            >
+              隱私問題
+            </button>
           </div>
           <p>台大職航團隊 © 2025</p>
         </footer>
       </div>
-      <UnfinishedBar ref={unfinishedRef} discription="hi" />
+      <UnfinishedBar
+        ref={unfinishedRef}
+        discription="這個頁面在做的事"
+        btnClicked={closeDialog}
+      />
     </>
   );
 };

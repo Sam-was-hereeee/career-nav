@@ -11,11 +11,7 @@ const DisplayProfile = () => {
       "從台大外文系到\n歐洲數據科學碩士",
       "以突出的作品集\n爭取接案機會",
     ],
-    avatarImg: [
-      "/avatarImgTest/avatar4.jpg",
-      "/avatarImgTest/avatar4.jpg",
-      "/avatarImgTest/avatar4.jpg",
-    ],
+    avatarImg: ["/avatar4.jpg", "/avatar4.jpg", "/avatar4.jpg"],
   };
   const profileSet2 = {
     name: ["軟體工程師", "插畫家", "社群媒體創作者"],
@@ -25,11 +21,7 @@ const DisplayProfile = () => {
       "休學一年自學動畫\n開拓數位遊牧職涯",
       "從每天一篇文開始的\n個人品牌歷程",
     ],
-    avatarImg: [
-      "/avatarImgTest/avatar4.jpg",
-      "/avatarImgTest/avatar4.jpg",
-      "/avatarImgTest/avatar4.jpg",
-    ],
+    avatarImg: ["/avatar4.jpg", "/avatar4.jpg", "/avatar4.jpg"],
   };
   return (
     <div className="flex flex-col w-full h-[1012px] px-[130px] py-[40px] gap-[40px] items-center">

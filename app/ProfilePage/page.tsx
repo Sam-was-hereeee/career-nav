@@ -2,11 +2,11 @@ import React from "react";
 import NaviBar from "@/components/shared_components/NaviBar/NaviBar";
 import Footer from "@/components/shared_components/Footer";
 import WishBox from "@components/WishBox/WishBox";
-import SearchBar from "@components/ProfilePageCompon/SearchBar";
-import PersonInfo from "@components/ProfilePageCompon/PersonInfo";
-import CareerMap from "@components/ProfilePageCompon/CareerMap";
-import QA from "@components/ProfilePageCompon/QA";
-import CommentInput from "@components/ProfilePageCompon/CommentInput";
+import SearchBar from "@components/profile_page/SearchBar";
+import PersonInfo from "@components/profile_page/PersonInfo";
+import CareerMap from "@components/profile_page/CareerMap";
+import QA from "@components/profile_page/QA";
+import CommentInput from "@components/profile_page/CommentInput";
 
 const page = () => {
   return (

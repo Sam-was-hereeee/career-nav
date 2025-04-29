@@ -20,7 +20,7 @@ const AccountBtn = ({ currentPage }: Props) => {
         登入/註冊
       </Link>
       <div
-        className="w-[40px] h-[40px] rounded-full ml-4 mr-6"
+        className="w-[40px] h-[40px] rounded-full ml-4"
         onClick={() => {
           console.log("account");
         }}

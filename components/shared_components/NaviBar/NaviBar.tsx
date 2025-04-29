@@ -1,7 +1,10 @@
+"use client"
 import Link from "next/link";
 import React from "react";
 import SearchBar from "./SearchBar";
 import AccountBtn from "./AccountBtn";
+import {useState} from "react";
+import {useEffect} from "react";
 
 interface Props {
   currentPage: number;
@@ -12,9 +15,31 @@ const NaviBar = ({ currentPage }: Props) => {
     title: ["主頁", "學長姐職涯檔案", "職業訪談", "關於職航", "更多"],
     href: ["/", "/careerProfile", "/interview", "/about", "/more"],
   };
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+
+      if (delta > 5) {
+        setShow(false); // scrolling down → hide navbar
+      } else if (delta < -5) {
+        setShow(true); // scrolling up → show navbar
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
-      <div className="sticky top-0 w-full bg-[#F1F1EE] shadow z-50">
+      <div className={`fixed top-0 w-full bg-[#F1F1EE] shadow z-50 transition-transform duration-300 ${
+    show ? "translate-y-0" : "-translate-y-full"
+  }`}>
         <div className="max-w-screen-xl px-4 sm:px-0.5 sm:mx-0 lg:px-8 py-2
                   grid grid-cols-2 sm:grid-cols-[auto_1fr_auto] gap-y-2 sm:gap-4
                   items-center">

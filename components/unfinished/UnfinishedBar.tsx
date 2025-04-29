@@ -22,7 +22,7 @@ const UnfinishedBar = forwardRef<HTMLDialogElement, Props>(
           <p>{discription}</p>
           <button
             onClick={btnClicked}
-            className="w-[131px] h-[50px] rounded-[20px] text-center bg-[#728594]"
+            className="w-[131px] h-[50px] rounded-[20px] text-center text-white bg-[#728594]"
           >
             返回
           </button>

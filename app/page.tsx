@@ -1,4 +1,4 @@
-import JoinSeinorBar from "@/components/main_page/JoinSeinorBar";
+import JoinSeniorBar from "@components/main_page/JoinSeniorBar";
 import ArticleColumn from "@/components/shared_components/ArticleColumn";
 import DisplayProfile from "@/components/main_page/DisplayProfile";
 import ExploreProfile from "@components/ExploreProfile/ExploreProfile";
@@ -14,7 +14,7 @@ export default function Home() {
     <main>
       <div>
         <NaviBar currentPage={0} />
-        <JoinSeinorBar />
+        <JoinSeniorBar />
         <ExploreProfile />
         <CoreService />
         <AboutUs />

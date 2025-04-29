@@ -4,7 +4,7 @@ import SearchBar from "./SearchBar";
 import AccountBtn from "./AccountBtn";
 
 interface Props {
-  currentPage: number; //0、1、2、3、4、5(login/register) 將目前所在頁面的navigation文字功能取消並加粗體
+  currentPage: number;
 }
 
 const NaviBar = ({ currentPage }: Props) => {
@@ -14,43 +14,50 @@ const NaviBar = ({ currentPage }: Props) => {
   };
 
   return (
-    <div className="flex fixed top-0 w-full h-[100px] items-center justify-between bg-[#F1F1EE] shadow-[inset_0_2px_8px_rgba(0,0,0,0.1)] z-50">
-      <div className="flex items-center">
-        <Link className="flex items-center ml-[20px]" href="/">
-          <img
-            className="min-w-[76px] min-h-[72px]"
-            src="/icon.svg"
-            alt="icon"
-          />
-          <div className="flex flex-col min-w-[334px] min-h-[67px] p-[10px] gap-[12px]">
-            <h3 className="text-[24px]/[120%] font-semibold text-[#728594]">
-              職屬 Step Senior
-            </h3>
-            <h6 className="text-[11px]/[0px] font-normal text-black">
-              給文學院學生的職涯經驗分享平台
-            </h6>
+      <div className="sticky top-0 w-full bg-[#F1F1EE] shadow z-50">
+        <div className="max-w-screen-xl px-4 sm:px-0.5 sm:mx-0 lg:px-8 py-2
+                  grid grid-cols-2 sm:grid-cols-[auto_1fr_auto] gap-y-2 sm:gap-4
+                  items-center">
+
+          {/* LOGO */}
+          <Link href="/" className="col-start-1 col-span-2 row-start-1 flex items-center space-x-2">
+            <img src="/icon.svg" className="w-10 h-10 sm:w-16 sm:h-16 object-contain"/>
+            <div className="flex flex-col leading-tight">
+              <h3 className="text-base sm:text-2xl font-semibold text-[#728594]">職屬 Step Senior</h3>
+              <h6 className="text-[10px] sm:text-xs text-black">給文學院學生的職涯經驗分享平台</h6>
+            </div>
+          </Link>
+
+          {/* ACCOUNT BUTTON */}
+          <div className="col-start-2 sm:col-start-3 row-start-1 justify-self-end">
+            <AccountBtn currentPage={currentPage}/>
           </div>
-        </Link>
-      </div>
-      <div className="flex items-center">
-        <div className="flex text-black text-base font-weight:400 text-nowrap gap-x-[40px] items-center">
-          {page.title.map((title, index) => (
-            <Link
-              className={
-                "hover:font-bold transition-all duration-200 ease-in" +
-                (currentPage === index ? " font-bold" : "")
-              }
-              key={index}
-              href={page.href[index]}
-            >
-              {title}
-            </Link>
-          ))}
-          <SearchBar></SearchBar>
+
+          {/* NAVIGATION + SEARCH */}
+          <div
+              className="col-span-2 sm:col-start-2 sm:row-start-1 flex flex-wrap justify-center sm:justify-start items-center gap-4 sm:gap-6 text-sm sm:text-base text-black">
+            {page.title.map((title, index) => (
+                <Link
+                    key={index}
+                    href={page.href[index]}
+                    className={
+                        "hover:font-bold transition-all duration-200 ease-in" +
+                        (currentPage === index ? " font-bold" : "")
+                    }
+                >
+                  {title}
+                </Link>
+            ))}
+
+            {/* SEARCH hidden on mobile */}
+            <div className="hidden sm:block">
+              <SearchBar/>
+            </div>
+          </div>
+
         </div>
-        <AccountBtn currentPage={currentPage} />
       </div>
-    </div>
+
   );
 };
 

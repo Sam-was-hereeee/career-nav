@@ -1,5 +1,5 @@
 import JoinSeinorBar from "@/components/main_page/JoinSeinorBar";
-import ArticleColumn from "@components/Article/ArticleColumn";
+import ArticleColumn from "@/components/shared_components/ArticleColumn";
 import DisplayProfile from "@/components/main_page/DisplayProfile";
 import ExploreProfile from "@components/ExploreProfile/ExploreProfile";
 import Footer from "@/components/shared_components/Footer";

@@ -41,13 +41,15 @@ const InputBox = () => {
         <div className="flex flex-col items-center w-[284px] h-[130px] p-[10px] gap-[10px]">
           <input
             className="min-w-[256px] h-[30px] rounded-[10px] p-[10px] bg-[#D9D9D9]/50"
-            type="email"
+            type="text"
             placeholder="輸入臺大學號"
+            required
           />
           <input
             className="min-w-[256px] h-[30px] rounded-[10px] p-[10px] bg-[#D9D9D9]/50"
             type="password"
             placeholder="輸入密碼"
+            required
           />
           <Link href="/">忘記密碼？</Link>
         </div>

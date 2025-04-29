@@ -1,12 +1,31 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import NaviBar from "@/components/shared_components/NaviBar/NaviBar";
 import SideBar from "@components/SideBar/SideBar";
 import WishBox from "@components/WishBox/WishBox";
 import Footer from "@/components/shared_components/Footer";
 import SearchResult from "@components/SearchResult/SearchResult";
 import SearchProfile from "@components/SearchProfile/SearchProfile";
+import UnfinishedBar from "@/components/unfinished/UnfinishedBar";
 
 const CareerProfilePage = () => {
+  const router = useRouter();
+  const unfinishedBarRef = useRef<HTMLDialogElement>(null);
+
+  const closeDialog = () => {
+    router.push("/");
+  };
+
+  useEffect(() => {
+    unfinishedBarRef.current?.showModal();
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
+
   return (
     <div>
       <NaviBar currentPage={1} />
@@ -18,6 +37,11 @@ const CareerProfilePage = () => {
       </div>
       <WishBox />
       <Footer />
+      <UnfinishedBar
+        ref={unfinishedBarRef}
+        discription="這個頁面在做的事"
+        btnClicked={closeDialog}
+      />
     </div>
   );
 };

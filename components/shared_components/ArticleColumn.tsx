@@ -4,14 +4,14 @@ import Link from "next/link";
 
 const ArticleColumn = () => {
   const articleSet = {
-    thumbnail: ["/article2.webp", "/article1.webp"],
+    thumbnail: ["/gray_bg.jpg", "/gray_bg.jpg"],
     title: ["實現夢想職涯的 10 個要點", "大學期間可以做的 5 件事"],
     desciption: [
       "人資學姊分享 企業到底在面試時最想知道什麼",
       "為職涯奠基的關鍵行動",
     ],
-    authorName: ["中心哲", "中新穎"],
-    authorImg: ["/avatarImgTest/justin.jpg", "/avatarImgTest/avatar1.webp"],
+    authorName: ["Name", "Name"],
+    authorImg: ["/avatar4.jpg", "/avatar4.jpg"],
   };
 
   return (

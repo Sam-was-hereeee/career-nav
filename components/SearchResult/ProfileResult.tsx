@@ -15,7 +15,7 @@ const ProfileResult = () => {
           {test.map((profile, index) => (
             <Profile
               key={index}
-              profileImg="/avatarImgTest/avatar4.jpg"
+              profileImg="/avatar4.jpg"
               name="name"
               career="career"
               description="description"

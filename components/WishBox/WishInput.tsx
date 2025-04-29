@@ -4,9 +4,9 @@ import React from "react";
 
 const WishInput = () => {
   return (
-    <div className="flex flex-col min-w-[393px] min-h-[124px] gap-[20px]">
+    <div className="flex flex-col min-w-40 min-h-[124px] gap-[20px] content-center items-center">
       <label
-        className="flex w-full h-[56px] py-[10px] items-center"
+        className="w-full h-[56px] py-[10px] items-center"
         htmlFor="wishInput"
       >
         <input

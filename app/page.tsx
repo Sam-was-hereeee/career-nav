@@ -19,7 +19,6 @@ export default function Home() {
         <CoreService />
         <AboutUs />
         <DisplayProfile />
-        <NewsColumn />
         <ArticleColumn />
         <WishBox />
       </div>

@@ -56,7 +56,7 @@ const DisplayProfile = () => {
             </div>
 
             {/* Profile Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 w-full">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 w-full place-content-around place-items-center">
                 {profiles.map((profile, index) => (
                     <Profile
                         key={index}

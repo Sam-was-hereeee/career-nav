@@ -15,7 +15,7 @@ const ArticleColumn = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-[610px] px-[10px] py-[30px] gap-[50px] items-center">
+    <div className="flex flex-col w-full px-[10px] py-[30px] gap-[50px] items-center">
       <h1 className="w-full h-[50px] text-[40px]/[70px] font-bold text-center">
         精選訪談文章
       </h1>
@@ -34,7 +34,7 @@ const ArticleColumn = () => {
         className="w-[240px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white text-center hover:bg-[#728594]/80 shadow-xl transition-all duration-300 ease-in"
         href="./login"
       >
-        登入以閱讀更多
+        精彩文章即將上線～
       </Link>
     </div>
   );

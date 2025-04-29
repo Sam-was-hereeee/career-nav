@@ -12,8 +12,8 @@ import AboutUs from "@/components/main_page/AboutUs";
 export default function Home() {
   return (
     <main>
-      <div>
         <NaviBar currentPage={0} />
+      <div className={"flex flex-col gap-0"}>
         <JoinSeniorBar />
         <ExploreProfile />
         <CoreService />
@@ -22,8 +22,9 @@ export default function Home() {
         <NewsColumn />
         <ArticleColumn />
         <WishBox />
-        <Footer />
       </div>
+
+        <Footer />
     </main>
   );
 }

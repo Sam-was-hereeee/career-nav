@@ -20,7 +20,7 @@ const CoreService = () => {
   ];
 
   return (
-    <div className="w-full h-[557px] border-b-2 flex flex-col justify-center items-center gap-[51px] bg-[#F1F1EE]">
+    <div className="w-ful py-10 sm:py-24 border-b-2 flex flex-col sm:flex-row justify-center items-center gap-[51px] bg-[#F1F1EE]">
       <div className="flex flex-col items-center gap-[10px]">
         <h3 className="text-[32px]/[120%] font-bold text-black text-center text-nowrap">
           核心服務
@@ -32,7 +32,7 @@ const CoreService = () => {
         </p>
       </div>
 
-      <div className="flex justify-center gap-[40px]">
+      <div className="flex flex-col sm:flex-row justify-center gap-[40px]">
         {services.map((service, index) => (
           <div
             key={index}

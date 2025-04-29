@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../Profile/Profile";
+import Profile from "../shared_components/Profile";
 import Link from "next/link";
 
 const DisplayProfile = () => {

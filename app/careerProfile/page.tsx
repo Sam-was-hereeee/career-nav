@@ -1,8 +1,8 @@
 import React from "react";
-import NaviBar from "@components/NaviBar/NaviBar";
+import NaviBar from "@/components/shared_components/NaviBar/NaviBar";
 import SideBar from "@components/SideBar/SideBar";
 import WishBox from "@components/WishBox/WishBox";
-import Footer from "@components/Footer/Footer";
+import Footer from "@/components/shared_components/Footer";
 import SearchResult from "@components/SearchResult/SearchResult";
 import SearchProfile from "@components/SearchProfile/SearchProfile";
 

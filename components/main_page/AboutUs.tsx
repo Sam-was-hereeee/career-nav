@@ -2,7 +2,10 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <div className="w-full h-[673px] flex flex-col justify-center items-center gap-[33px] bg-[#F1F1EE]">
+    <div
+      id="AboutUs"
+      className="w-full h-[673px] flex flex-col justify-center items-center gap-[33px] bg-[#F1F1EE]"
+    >
       <h3 className="text-[32px]/[120%] font-bold text-black text-center text-nowrap">
         關於我們
       </h3>

@@ -37,7 +37,7 @@ const NaviBar = ({ currentPage }: Props) => {
   }, [lastScrollY]);
 
   return (
-      <div className={`fixed top-0 w-full bg-[#F1F1EE] shadow z-50 transition-transform duration-300 ${
+      <div className={`sticky top-0 w-full bg-[#F1F1EE] shadow z-50 transition-transform duration-300 ${
     show ? "translate-y-0" : "-translate-y-full"
   }`}>
         <div className="max-w-screen-xl px-4 sm:px-0.5 sm:mx-0 lg:px-8 py-2
@@ -60,7 +60,7 @@ const NaviBar = ({ currentPage }: Props) => {
 
           {/* NAVIGATION + SEARCH */}
           <div
-              className="col-span-2 sm:col-start-2 sm:row-start-1 flex flex-wrap justify-center sm:justify-start items-center gap-4 sm:gap-6 text-sm sm:text-base text-black">
+              className="col-span-2 sm:col-span-1 sm:col-start-2 sm:row-start-1 flex flex-wrap justify-center sm:justify-self-end sm:justify-start items-center gap-4 sm:gap-6 text-sm sm:text-base text-black">
             {page.title.map((title, index) => (
                 <Link
                     key={index}

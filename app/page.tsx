@@ -14,7 +14,6 @@ export default function Home() {
     <main>
       <div>
         <NaviBar currentPage={0} />
-        <div className="w-full h-[98px] min-h-[98px]" />
         <JoinSeinorBar />
         <ExploreProfile />
         <CoreService />

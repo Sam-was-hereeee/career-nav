@@ -30,7 +30,7 @@ const JoinSeinorBar = () => {
           </span>
         </p>
         <Link
-          href="./login"
+          href="./register"
           className="w-[240px] h-[50px] p-[12px] border-[3px] mt-[36px] rounded-[20px] flex justify-center items-center bg-[#728594] text-[20px]/[120%] font-bold text-white"
         >
           加入學長姐行列

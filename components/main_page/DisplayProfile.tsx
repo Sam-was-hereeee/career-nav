@@ -12,9 +12,9 @@ const DisplayProfile = () => {
       "以突出的作品集\n爭取接案機會",
     ],
     avatarImg: [
-      "/avatarImgTest/avatar2.jpg",
-      "/avatarImgTest/avatar1.webp",
-      "/avatarImgTest/avatar3.png",
+      "/avatarImgTest/avatar4.jpg",
+      "/avatarImgTest/avatar4.jpg",
+      "/avatarImgTest/avatar4.jpg",
     ],
   };
   const profileSet2 = {
@@ -26,9 +26,9 @@ const DisplayProfile = () => {
       "從每天一篇文開始的\n個人品牌歷程",
     ],
     avatarImg: [
-      "/avatarImgTest/justin.jpg",
       "/avatarImgTest/avatar4.jpg",
-      "/avatarImgTest/avatar5.jpg",
+      "/avatarImgTest/avatar4.jpg",
+      "/avatarImgTest/avatar4.jpg",
     ],
   };
   return (

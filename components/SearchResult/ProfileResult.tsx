@@ -15,10 +15,10 @@ const ProfileResult = () => {
           {test.map((profile, index) => (
             <Profile
               key={index}
-              profileImg="/avatarImgTest/justin.jpg"
-              name="中心哲"
-              career="忠心耿耿"
-              description="哈哈"
+              profileImg="/avatarImgTest/avatar4.jpg"
+              name="name"
+              career="career"
+              description="description"
             />
           ))}
         </div>

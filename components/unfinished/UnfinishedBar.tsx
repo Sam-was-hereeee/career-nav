@@ -32,4 +32,5 @@ const UnfinishedBar = forwardRef<HTMLDialogElement, Props>(
     },
 );
 
+UnfinishedBar.displayName = "UnfinishedBar";
 export default UnfinishedBar;

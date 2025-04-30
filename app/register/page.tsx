@@ -8,121 +8,209 @@ import { useRouter } from "next/navigation";
 import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
 import TextInput from "@/components/RegisterInput/TextInput";
 import SelectInput from "@/components/RegisterInput/SelectInput";
+import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {router} from "next/client";
+
+// Form Schema
+const registerSchema = z.object({
+  // Step 0
+  isSenior: z.boolean(),
+  email: z.string().email("請輸入有效的電子信箱").optional(),
+  password: z.string().min(6, "密碼至少需要6個字元").optional(),
+
+  // Step 1
+  verifyCode: z.string().min(1, "請輸入驗證碼").optional(),
+
+  // Step 2
+  graduateYr: z.string().min(1, "請選擇畢業年份").optional(),
+  school: z.string().min(1, "請選擇學校").optional(),
+  major: z.string().min(1, "請選擇科系").optional(),
+  doubleMajor: z.string().optional(),
+  minor: z.string().optional(),
+  studentID: z.string().min(1, "請輸入學號").optional(),
+
+  // Step 3
+  name: z.string().min(1, "請輸入本名").optional(),
+  nickName: z.string().min(1, "請輸入顯示名稱").optional(),
+  career: z.string().min(1, "請選擇職業名稱").optional(),
+  industry: z.string().min(1, "請選擇工作產業").optional(),
+  corporationName: z.string().optional(),
+  field: z.array(z.string()).optional(),
+  introduction: z.string().optional(),
+
+  // Step 4
+  agreement: z.boolean().refine((val) => val === true, {
+    message: "請同意條款",
+  }),
+});
+
+type RegisterFormData = z.infer<typeof registerSchema>;
 
 // Types for props
 interface RegisterTypeSelectorProps {
   isSenior: boolean;
-  setIsSenior: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsSenior: (value: boolean) => void;
   handleGoogleSignup: () => void;
 }
 
-interface Step0Props {
-  isSenior: boolean;
-  setIsSenior: React.Dispatch<React.SetStateAction<boolean>>;
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-  handleGoogleSignup: () => void;
-}
-
-interface Step1Props {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-}
-
-interface Step2Props {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-}
-
-interface Step3Props {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-}
-
-interface Step4Props {
-  setStep: React.Dispatch<React.SetStateAction<number>>;
-  router: any;
+interface StepProps {
+  setStep: (step: number) => void;
 }
 
 // Button group for student/alumni toggle and Google signup
-const RegisterTypeSelector = ({ isSenior, setIsSenior, handleGoogleSignup }: RegisterTypeSelectorProps) => (
-  <div className="flex flex-col items-center">
-    <div>
-      <button
-        className={
-          "w-[149.5px] h-[34px] text-center border-b-black" +
-          (!isSenior ? " border-b-[5px] font-bold" : " border-b-[1px]")
-        }
-        type="button"
-        onClick={() => setIsSenior(false)}
-      >
-        在學生
-      </button>
-      <button
-        className={
-          "w-[149.5px] h-[34px] text-center border-b-black" +
-          (isSenior ? " border-b-[5px] font-bold" : " border-b-[1px]")
-        }
-        type="button"
-        onClick={() => setIsSenior(true)}
-      >
-        已畢業學長姊
-      </button>
+const RegisterTypeSelector = ({ isSenior, setIsSenior, handleGoogleSignup }: RegisterTypeSelectorProps) => {
+  const { setValue } = useFormContext<RegisterFormData>();
+  
+  const handleTypeChange = (value: boolean) => {
+    setIsSenior(value);
+    setValue("isSenior", value);
+  };
+
+  return (
+    <div className="flex flex-col items-center">
+      <div>
+        <button
+          className={
+            "w-[149.5px] h-[34px] text-center border-b-black" +
+            (!isSenior ? " border-b-[5px] font-bold" : " border-b-[1px]")
+          }
+          type="button"
+          onClick={() => handleTypeChange(false)}
+        >
+          在學生
+        </button>
+        <button
+          className={
+            "w-[149.5px] h-[34px] text-center border-b-black" +
+            (isSenior ? " border-b-[5px] font-bold" : " border-b-[1px]")
+          }
+          type="button"
+          onClick={() => handleTypeChange(true)}
+        >
+          已畢業學長姊
+        </button>
+      </div>
+      {!isSenior && (
+        <button
+          type="button"
+          onClick={handleGoogleSignup}
+          className="w-[360px] h-[45px] mt-[32px] mb-[12px] flex items-center justify-center gap-2 rounded-[8px] border border-[#D7D8D9] bg-white shadow hover:bg-[#f5f5f5]"
+        >
+          <img src="/google-icon.svg" alt="Google" className="w-6 h-6" />
+          <span className="text-[16px] font-medium text-[#444]">使用 Google 註冊</span>
+        </button>
+      )}
     </div>
-    {!isSenior && (
-      <button
-        type="button"
-        onClick={handleGoogleSignup}
-        className="w-[360px] h-[45px] mt-[32px] mb-[12px] flex items-center justify-center gap-2 rounded-[8px] border border-[#D7D8D9] bg-white shadow hover:bg-[#f5f5f5]"
-      >
-        <img src="/google-icon.svg" alt="Google" className="w-6 h-6" />
-        <span className="text-[16px] font-medium text-[#444]">使用 Google 註冊</span>
-      </button>
-    )}
-  </div>
-);
+  );
+};
 
 // Step 0: Choose type and alumni registration form
-const Step0 = ({ isSenior, setIsSenior, setStep, handleGoogleSignup }: Step0Props) => (
-  <div className="flex flex-col w-full p-[30px] items-center bg-white">
-    <RegisterTypeSelector isSenior={isSenior} setIsSenior={setIsSenior} handleGoogleSignup={handleGoogleSignup} />
-    {!isSenior ? null : (
-      <div className="flex flex-col items-center">
-        <h1 className="text-[32px]/[35px] text-black font-semibold mt-[28px]">建立職航帳號</h1>
-        <p className="text-[16px]/[35px] text-black font-normal mb-[35px]">向學弟妹分享職涯經驗，傳承向前進的資源和動力！</p>
-        <label htmlFor="email">
-          <p className="text-[16px]/[30px] text-black font-bold mx-[3px] my-[10px]">電子信箱（請輸入個人常用信箱）</p>
-          <input id="email" name="email" type="email" placeholder="個人常用 Email" className="w-[360px] h-[45px] p-[10px] rounded-[8px] bg-[#F1F1EE]" required />
-        </label>
-        <label htmlFor="password">
-          <p className="text-[16px]/[30px] text-black font-bold mx-[3px] my-[10px]">設立密碼</p>
-          <input id="password" name="password" type="password" placeholder="輸入密碼" className="w-[360px] h-[45px] p-[10px] rounded-[8px] bg-[#F1F1EE]" required />
-        </label>
-        <RegisterProgress currentStep={0} />
-        <button type="button" onClick={() => setStep(1)} className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]">下一步</button>
-      </div>
-    )}
-  </div>
-);
+const Step0 = ({ setStep }: StepProps) => {
+  const { register, watch, trigger, setValue, formState: { errors } } = useFormContext<RegisterFormData>();
+  const isSenior = watch("isSenior");
+
+  const handleNext = async () => {
+    setStep(1);
+  };
+
+  return (
+    <div className="flex flex-col w-full p-[30px] items-center bg-white">
+      <RegisterTypeSelector 
+        isSenior={isSenior} 
+        setIsSenior={(value) => setValue("isSenior", value)} 
+        handleGoogleSignup={() => {}} 
+      />
+      {isSenior && (
+        <div className="flex flex-col items-center">
+          <h1 className="text-[32px]/[35px] text-black font-semibold mt-[28px]">建立職航帳號</h1>
+          <p className="text-[16px]/[35px] text-black font-normal mb-[35px]">向學弟妹分享職涯經驗，傳承向前進的資源和動力！</p>
+          <label htmlFor="email">
+            <p className="text-[16px]/[30px] text-black font-bold mx-[3px] my-[10px]">電子信箱（請輸入個人常用信箱）</p>
+            <input
+              {...register("email")}
+              id="email"
+              type="email"
+              placeholder="個人常用 Email"
+              className="w-[360px] h-[45px] p-[10px] rounded-[8px] bg-[#F1F1EE]"
+            />
+            {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+          </label>
+          <label htmlFor="password">
+            <p className="text-[16px]/[30px] text-black font-bold mx-[3px] my-[10px]">設立密碼</p>
+            <input
+              {...register("password")}
+              id="password"
+              type="password"
+              placeholder="輸入密碼"
+              className="w-[360px] h-[45px] p-[10px] rounded-[8px] bg-[#F1F1EE]"
+            />
+            {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
+          </label>
+          <RegisterProgress currentStep={0} />
+          <button
+            type="button"
+            onClick={handleNext}
+            className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]"
+          >
+            下一步
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
 
 // Step 1: Verification code
-const Step1 = ({ setStep }: Step1Props) => (
-  <div className="w-full h-[465px] pt-[45px] pb-[81px] my-[30px] flex flex-col items-center bg-white">
-    <h1 className="text-[24px]/[35px] font-semibold my-[10px]">驗證碼已寄送至你的常用信箱</h1>
-    <input id="verifyCode" name="verifyCode" type="text" placeholder="輸入驗證碼" className="w-[391px] h-[45px] rounded-[8px] p-[10px] my-[10px] bg-[#F1F1EE]" required />
-    <p className="text-[14px]/[35px] font-normal text-[#5F6368]">
-      沒有收到驗證碼？<button type="button" className="underline">重新寄送</button>
-    </p>
-    <RegisterProgress currentStep={1} />
-    <div className="w-[349px] h-[68px] py-[10px] mb-[10px] flex justify-between">
-      <button type="button" onClick={() => setStep(0)} className="w-[95px] h-[44px] py-[10px] gap-[10px] flex items-center text-base font-medium">
-        <img src="/arrow2.svg" className="w-[9.5px] h-[17px]" />上一步
-      </button>
-      <button type="button" onClick={() => setStep(2)} className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]">下一步</button>
+// TODO: change this into a static waiting page
+const Step1 = ({ setStep }: StepProps) => {
+  const { register, trigger, formState: { errors } } = useFormContext<RegisterFormData>();
+
+  const handleNext = async () => {
+    const isValid = await trigger("verifyCode");
+    if (isValid) setStep(2);
+  };
+
+  return (
+    <div className="w-full px-16 gap-5 h-[465px] pt-[45px] pb-[81px] my-[30px] flex flex-col items-center bg-white">
+      <h1 className="sm:text-[24px]/[35px] text-wrap text-3xl sm:text-nowrap font-semibold my-[10px]">驗證碼已寄送至你的常用信箱</h1>
+      <input
+        {...register("verifyCode")}
+        id="verifyCode"
+        type="text"
+        placeholder="輸入驗證碼"
+        className="w-auto h-[45px] rounded-[8px] p-[10px] my-[10px] bg-[#F1F1EE]"
+      />
+      {errors.verifyCode && <p className="text-red-500 text-sm">{errors.verifyCode.message}</p>}
+      <p className="text-[14px]/[35px] font-normal text-[#5F6368]">
+        沒有收到驗證碼？<button type="button" className="underline">重新寄送</button>
+      </p>
+      <RegisterProgress currentStep={1} />
+      <div className="w-[349px] h-[68px] py-[10px] mb-[10px] flex justify-between">
+        <button
+          type="button"
+          onClick={() => setStep(0)}
+          className="w-[95px] h-[44px] py-[10px] gap-[10px] flex items-center text-base font-medium"
+        >
+          <img src="/arrow2.svg" className="w-[9.5px] h-[17px]" />上一步
+        </button>
+        <button
+          type="button"
+          onClick={handleNext}
+          className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]"
+        >
+          下一步
+        </button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // Step 2: Academic info
-const Step2 = ({ setStep }: Step2Props) => (
-  <div className="w-full h-[1280px] py-[60px] flex flex-col items-center bg-white">
-    <h1 className="w-[532px] text-[32px]/[40px] font-semibold text-nowrap my-[10px] whitespace-pre-line">歡迎，感謝您願意引導學弟妹啟航！\n創建個人檔案，分享自己的職涯軌跡</h1>
+const Step2 = ({ setStep }: StepProps) => (
+  <div className="w-full gap-5 py-[60px] flex flex-col items-center bg-white">
+    <h1 className="sm:text-[24px]/[35px] text-wrap text-3xl sm:text-nowrap font-semibold my-[10px]">歡迎，感謝您願意引導學弟妹啟航！br創建個人檔案，分享自己的職涯軌跡</h1>
     <RegisterProgress currentStep={2} />
     <h2 className="text-[20px]/[30px] font-bold">學經歷資訊</h2>
     <SelectInput id="graduateYr" placeholder="選擇入學年份" optionArr={["2000", "2025"]} valueArr={["2000", "2025"]} required={true}>畢業年份</SelectInput>
@@ -141,9 +229,9 @@ const Step2 = ({ setStep }: Step2Props) => (
 );
 
 // Step 3: Personal and career info
-const Step3 = ({ setStep }: Step3Props) => (
-  <div className="w-full h-[1540px] py-[60px] flex flex-col items-center bg-white">
-    <h1 className="w-[532px] text-[32px]/[40px] font-semibold text-nowrap my-[10px]">創建個人檔案，分享自己的職涯軌跡</h1>
+const Step3 = ({ setStep }: StepProps) => (
+  <div className="w-full gap-5 py-[60px] flex flex-col items-center bg-white">
+    <h1 className="sm:text-[24px]/[35px] text-wrap text-3xl sm:text-nowrap font-semibold my-[10px]">創建個人檔案，分享自己的職涯軌跡</h1>
     <RegisterProgress currentStep={2} />
     <h2 className="text-[20px]/[30px] font-bold">個人資訊</h2>
     <TextInput id="name" description="您在此輸入的本名，不會公開於個人檔案" placeholder="輸入中文全名" required={true}>本名</TextInput>
@@ -164,9 +252,9 @@ const Step3 = ({ setStep }: Step3Props) => (
 );
 
 // Step 4: Agreement and finish
-const Step4 = ({ setStep, router }: Step4Props) => (
-  <div className="w-full h-[922px] py-[52px] flex flex-col items-center bg-white">
-    <h1 className="text-[32px]/[40px] font-semibold">是否以非公開形式，分享聯絡資訊？</h1>
+const Step4 = ({ setStep }: StepProps) => (
+  <div className="w-full gap-5 py-[52px] flex flex-col items-center bg-white">
+    <h1 className="sm:text-[24px]/[35px] text-wrap text-2xl sm:text-nowrap font-semibold my-[10px] whitespace-pre inline">是否以非公開形式，分享聯絡資訊？</h1>
     <RegisterProgress currentStep={3} />
     <div className="text-[13px]/[150%] space-y-6 text-center text-nowrap mb-[70px]">
       <p className="text-[#000000]">成為「職航」的引航學長姐後，<br />本平台<span className="font-bold">不會主動於公開網頁上顯示您的聯絡資訊</span>。<br />即，任何人沒有經過身份驗證、沒有經過帳號與密碼登入，<br />是無法任意瀏覽您的個人檔案的。</p>
@@ -189,32 +277,43 @@ const Step4 = ({ setStep, router }: Step4Props) => (
 );
 
 const RegisterPage = () => {
-  // 2 (senior) -> true, 1 (student) -> false
-  const [isSenior, setIsSenior] = useState<boolean>(true); // false = student, true = senior
   const router = useRouter();
-  const [step, setStep] = useState(0); //0, 1, 2, 3, 4
+  const [step, setStep] = useState(0);
 
-  // Placeholder for Google signup handler
-  const handleGoogleSignup = () => {
-    // TODO: Integrate Google OAuth here
-    alert('Google signup not yet implemented.');
+  const methods = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      isSenior: true,
+      field: [],
+    },
+    mode: "onChange",
+  });
+
+  const onSubmit = async (data: RegisterFormData) => {
+    try {
+      // TODO: Submit to your API
+      console.log(data);
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <div>
-      <NaviBar currentPage={5} />
-      <div className="w-full h-[100px] min-h-[100px]" />
-      <div>
-        {step === 0 && (
-          <Step0 isSenior={isSenior} setIsSenior={setIsSenior} setStep={setStep} handleGoogleSignup={handleGoogleSignup} />
-        )}
-        {step === 1 && <Step1 setStep={setStep} />}
-        {step === 2 && <Step2 setStep={setStep} />}
-        {step === 3 && <Step3 setStep={setStep} />}
-        {step === 4 && <Step4 setStep={setStep} router={router} />}
-      </div>
-      <Footer />
-    </div>
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <NaviBar currentPage={5} />
+        <div className="w-full h-[100px] min-h-[100px]" />
+        <div>
+          {step === 0 && <Step0 setStep={setStep} />}
+          {step === 1 && <Step1 setStep={setStep} />}
+          {step === 2 && <Step2 setStep={setStep} />}
+          {step === 3 && <Step3 setStep={setStep} />}
+          {step === 4 && <Step4 setStep={setStep} />}
+        </div>
+        <Footer />
+      </form>
+    </FormProvider>
   );
 };
 

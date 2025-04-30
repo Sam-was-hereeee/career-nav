@@ -8,7 +8,7 @@ import CareerMap from "@components/profile_page/CareerMap";
 import QA from "@components/profile_page/QA";
 import CommentInput from "@components/profile_page/CommentInput";
 
-const page = () => {
+const Page = () => {
   return (
     <div>
       <NaviBar currentPage={2} />
@@ -24,4 +24,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

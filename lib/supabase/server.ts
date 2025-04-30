@@ -1,4 +1,4 @@
-'use server'
+"use server";
 import { Database } from "@/database.types";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
@@ -20,6 +20,7 @@ export const createClient = async () => {
                             cookieStore.set(name, value, options);
                         });
                     } catch (error) {
+                        console.log(error);
                         // The `set` method was called from a Server Component.
                         // This can be ignored if you have middleware refreshing
                         // user sessions.
@@ -29,4 +30,3 @@ export const createClient = async () => {
         },
     );
 };
-

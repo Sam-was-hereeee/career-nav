@@ -1,8 +1,4 @@
-import {createClient} from "@lib/supabase/server";
-import {Tables, TablesInsert, TablesUpdate} from "@/database.types";
-
-type SeniorUser = Tables<"user_senior_info">
-type SeniorUserInsert = TablesInsert<"user_senior_info">
+import { createClient } from "@lib/supabase/server";
 
 export async function signUpWithEmailAndPassword(
     email: string,
@@ -27,3 +23,4 @@ export async function signOut() {
     }
     return { error: null };
 }
+

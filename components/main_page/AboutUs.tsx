@@ -9,7 +9,7 @@ const AboutUs = () => {
       <h3 className="text-[32px]/[120%] font-bold text-black text-center text-nowrap">
         關於我們
       </h3>
-      <p className="text-[16px]/[150%] font-normal text-black text-center sm:text-nowrap">
+      <p className="text-[16px]/[150%] font-normal text-black text-center px-5 sm:text-nowrap">
         我們是一群來自台大文學院與管理學院的學生，渴望打造更友善的職涯探索環境。
         <br />
         我們希望科系背景、職涯經驗的差距不再是進入心儀職業的阻礙，

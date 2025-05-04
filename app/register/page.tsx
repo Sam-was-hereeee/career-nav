@@ -144,7 +144,7 @@ const Step0 = ({ setStep }: StepProps) => {
             {isSenior && (
                 <div className="flex flex-col items-center">
                     <h1 className="text-[32px]/[35px] text-black font-semibold mt-[28px]">
-                        建立職航帳號
+                        建立職屬帳號
                     </h1>
                     <p className="text-[16px]/[35px] text-black font-normal mb-[35px]">
                         向學弟妹分享職涯經驗，傳承向前進的資源和動力！
@@ -214,7 +214,7 @@ const Step1 = ({ setStep }: StepProps) => {
     return (
         <div className="w-full px-16 gap-5 h-[465px] pt-[45px] pb-[81px] my-[30px] flex flex-col items-center bg-white">
             <h1 className="sm:text-[24px]/[35px] text-wrap text-3xl sm:text-nowrap font-semibold my-[10px]">
-                驗證碼已寄送至你的常用信箱
+                驗證電子郵件已寄出<br/>請前往您的電子郵件進行驗證
             </h1>
             <input
                 {...register("verifyCode")}
@@ -259,8 +259,8 @@ const Step1 = ({ setStep }: StepProps) => {
 // Step 2: Academic info
 const Step2 = ({ setStep }: StepProps) => (
     <div className="w-full gap-5 py-[60px] flex flex-col items-center bg-white">
-        <h1 className="sm:text-[24px]/[35px] text-wrap text-3xl sm:text-nowrap font-semibold my-[10px]">
-            歡迎，感謝您願意引導學弟妹啟航！br創建個人檔案，分享自己的職涯軌跡
+        <h1 className="sm:text-[24px]/[35px] text-wrap text-2xl sm:text-nowrap font-semibold my-[10px]">
+            歡迎，感謝您願意引導學弟妹啟航！<br/>創建個人檔案，分享自己的職涯軌跡
         </h1>
         <RegisterProgress currentStep={2} />
         <h2 className="text-[20px]/[30px] font-bold">學經歷資訊</h2>
@@ -335,7 +335,7 @@ const Step2 = ({ setStep }: StepProps) => (
 // Step 3: Personal and career info
 const Step3 = ({ setStep }: StepProps) => (
     <div className="w-full gap-5 py-[60px] flex flex-col items-center bg-white">
-        <h1 className="sm:text-[24px]/[35px] text-wrap text-3xl sm:text-nowrap font-semibold my-[10px]">
+        <h1 className="sm:text-[24px]/[35px] text-wrap text-2xl sm:text-nowrap font-semibold my-[10px]">
             創建個人檔案，分享自己的職涯軌跡
         </h1>
         <RegisterProgress currentStep={2} />
@@ -429,7 +429,7 @@ const Step4 = ({ setStep }: StepProps) => (
         <RegisterProgress currentStep={3} />
         <div className="text-[13px]/[150%] space-y-6 text-center text-nowrap mb-[70px]">
             <p className="text-[#000000]">
-                成為「職航」的引航學長姐後，
+                成為「職屬」的引航學長姐後，
                 <br />
                 本平台
                 <span className="font-bold">

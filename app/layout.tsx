@@ -29,7 +29,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "職航：文學院職涯經驗分享平台",
+  title: "職屬：文學院職涯經驗分享平台",
   description: "文學院職涯經驗分享平台",
 };
 

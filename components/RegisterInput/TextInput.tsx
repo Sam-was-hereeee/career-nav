@@ -34,7 +34,7 @@ const TextInput = ({
         name={id}
         type="text"
         placeholder={placeholder}
-        className="w-[405px] h-[45px] rounded-[8px] p-[10px] my-[5px] bg-[#F1F1EE]"
+        className="w-[80vw] sm:w-[405px] h-[45px] rounded-[8px] p-[10px] my-[5px] bg-[#F1F1EE]"
         required={required}
       />
     </label>

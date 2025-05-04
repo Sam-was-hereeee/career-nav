@@ -12,7 +12,7 @@ interface Props {
 
 const NaviBar = ({ currentPage }: Props) => {
   const page = {
-    title: ["主頁", "學長姐職涯檔案", "職業訪談", "關於職航", "更多"],
+    title: ["主頁", "學長姐職涯檔案", "職業訪談", "關於職屬", "更多"],
     href: ["/", "/careerProfile", "/interview", "/about", "/more"],
   };
   const [show, setShow] = useState(true);
@@ -25,7 +25,7 @@ const NaviBar = ({ currentPage }: Props) => {
 
       if (delta > 5) {
         setShow(false); // scrolling down → hide navbar
-      } else if (delta < -5) {
+      } else if (delta < -2) {
         setShow(true); // scrolling up → show navbar
       }
 

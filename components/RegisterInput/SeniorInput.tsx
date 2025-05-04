@@ -13,7 +13,7 @@ const SeniorInput = () => {
   return (
     <form onSubmit={handleSubmit} className="flex flex-col items-center">
       <h1 className="text-[32px]/[35px] text-black font-semibold mt-[28px]">
-        建立職航帳號
+        建立職屬帳號
       </h1>
       <p className="text-[16px]/[35px] text-black font-normal mb-[35px]">
         向學弟妹分享職涯經驗，傳承向前進的資源和動力！

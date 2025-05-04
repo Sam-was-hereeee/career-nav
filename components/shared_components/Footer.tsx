@@ -45,7 +45,7 @@ const Footer = () => {
                             隱私問題
                         </button>
                     </div>
-                    <p>台大職航團隊 © 2025</p>
+                    <p>台大職屬團隊 © 2025</p>
                 </footer>
             </div>
             <UnfinishedBar

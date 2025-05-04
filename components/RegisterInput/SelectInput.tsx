@@ -37,7 +37,7 @@ const SelectInput = ({
         id={id}
         name={id}
         required={required}
-        className="w-[405px] h-[45px] rounded-[8px] p-[10px] my-[5px] bg-[#F1F1EE] appearance-none"
+        className="w-[80vw] sm:w-[405px] h-[45px] rounded-[8px] p-[10px] my-[5px] bg-[#F1F1EE] appearance-none"
         defaultValue={"default"}
       >
         <option value="default" className="text-[#5F6368]" disabled>

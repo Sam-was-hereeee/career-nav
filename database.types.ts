@@ -83,30 +83,51 @@ export type Database = {
           },
         ]
       }
+      stepsenior_users: {
+        Row: {
+          created_at: string
+          email: string
+          has_profile: boolean | null
+          id: string
+          is_senior: boolean
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          has_profile?: boolean | null
+          id?: string
+          is_senior: boolean
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          has_profile?: boolean | null
+          id?: string
+          is_senior?: boolean
+        }
+        Relationships: []
+      }
       user_senior_info: {
         Row: {
           created_at: string
           email: string | null
           id: string
-          name: string | null
+          name: string
           other_info: Json | null
-          user_id: string | null
         }
         Insert: {
           created_at?: string
           email?: string | null
           id?: string
-          name?: string | null
+          name: string
           other_info?: Json | null
-          user_id?: string | null
         }
         Update: {
           created_at?: string
           email?: string | null
           id?: string
-          name?: string | null
+          name?: string
           other_info?: Json | null
-          user_id?: string | null
         }
         Relationships: []
       }
@@ -172,6 +193,51 @@ export type Database = {
           is_interviewee?: boolean | null
           is_waitlist?: boolean | null
           name?: string | null
+        }
+        Relationships: []
+      }
+      waitlist: {
+        Row: {
+          created_at: string
+          email: string
+          id: number
+          name: string | null
+          shoutout: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: number
+          name?: string | null
+          shoutout?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: number
+          name?: string | null
+          shoutout?: string | null
+        }
+        Relationships: []
+      }
+      wishlist: {
+        Row: {
+          content: string | null
+          created_at: string
+          creator: string | null
+          id: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          creator?: string | null
+          id?: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          creator?: string | null
+          id?: string
         }
         Relationships: []
       }

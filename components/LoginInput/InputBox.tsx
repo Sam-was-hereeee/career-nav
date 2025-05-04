@@ -42,7 +42,7 @@ const InputBox = () => {
           <input
             className="min-w-[256px] h-[30px] rounded-[10px] p-[10px] bg-[#D9D9D9]/50"
             type="text"
-            placeholder="輸入臺大學號"
+            placeholder="輸入電子郵件"
             required
           />
           <input

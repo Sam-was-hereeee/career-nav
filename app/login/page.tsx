@@ -7,7 +7,6 @@ const LoginPage = () => {
   return (
     <div>
       <NaviBar currentPage={5} />
-      <div className="w-full h-[100px] min-h-[100px]" />
       <LoginInput></LoginInput>
       <Footer />
     </div>

@@ -126,11 +126,18 @@ const Step0 = ({ setStep }: StepProps) => {
         register,
         watch,
         setValue,
+        trigger,
         formState: { errors },
     } = useFormContext<RegisterFormData>();
     const isSenior = watch("isSenior");
 
     const handleNext = async () => {
+        if (isSenior) {
+            const isValid = await trigger(["email", "password"]);
+            if (!isValid) {
+                return;
+            }
+        }
         setStep(1);
     };
 
@@ -154,14 +161,14 @@ const Step0 = ({ setStep }: StepProps) => {
                             電子信箱（請輸入個人常用信箱）
                         </p>
                         <input
-                            {...register("email")}
+                            {...register("email", { required: "請輸入電子信箱" })}
                             id="email"
                             type="email"
                             placeholder="個人常用 Email"
                             className="w-[360px] h-[45px] p-[10px] rounded-[8px] bg-[#F1F1EE]"
                         />
                         {errors.email && (
-                            <p className="text-red-500 text-sm">
+                            <p className="text-red-500 text-sm mt-1">
                                 {errors.email.message}
                             </p>
                         )}
@@ -171,14 +178,14 @@ const Step0 = ({ setStep }: StepProps) => {
                             設立密碼
                         </p>
                         <input
-                            {...register("password")}
+                            {...register("password", { required: "請輸入密碼" })}
                             id="password"
                             type="password"
                             placeholder="輸入密碼"
                             className="w-[360px] h-[45px] p-[10px] rounded-[8px] bg-[#F1F1EE]"
                         />
                         {errors.password && (
-                            <p className="text-red-500 text-sm">
+                            <p className="text-red-500 text-sm mt-1">
                                 {errors.password.message}
                             </p>
                         )}

@@ -5,6 +5,7 @@ import SearchBar from "./SearchBar";
 import AccountBtn from "./AccountBtn";
 import {useState} from "react";
 import {useEffect} from "react";
+import {useUser} from "@/hook/use-user";
 
 interface Props {
   currentPage: number;
@@ -15,6 +16,7 @@ const NaviBar = ({ currentPage }: Props) => {
     title: ["主頁", "學長姐職涯檔案", "職業訪談", "關於職屬", "更多"],
     href: ["/", "/careerProfile", "/interview", "/about", "/more"],
   };
+  const {user} = useUser();
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -55,7 +57,7 @@ const NaviBar = ({ currentPage }: Props) => {
 
           {/* ACCOUNT BUTTON */}
           <div className="col-start-2 sm:col-start-3 row-start-1 justify-self-end">
-            <AccountBtn currentPage={currentPage}/>
+            <AccountBtn currentPage={currentPage} loggedIn={!(!user)}/>
           </div>
 
           {/* NAVIGATION + SEARCH */}

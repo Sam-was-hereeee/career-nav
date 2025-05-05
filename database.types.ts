@@ -109,25 +109,64 @@ export type Database = {
       }
       user_senior_info: {
         Row: {
+          agreement: boolean
+          career: string | null
+          corporation_name: string | null
           created_at: string
-          email: string | null
+          double_major: string | null
+          fields: string[] | null
+          graduate_year: string | null
           id: string
-          name: string
-          other_info: Json | null
+          industry: string | null
+          introduction: string | null
+          major: string | null
+          minor: string | null
+          name: string | null
+          nickname: string | null
+          school: string | null
+          student_id: string | null
+          submitted_at: string
+          user_id: string
         }
         Insert: {
+          agreement: boolean
+          career?: string | null
+          corporation_name?: string | null
           created_at?: string
-          email?: string | null
-          id?: string
-          name: string
-          other_info?: Json | null
+          double_major?: string | null
+          fields?: string[] | null
+          graduate_year?: string | null
+          id: string
+          industry?: string | null
+          introduction?: string | null
+          major?: string | null
+          minor?: string | null
+          name?: string | null
+          nickname?: string | null
+          school?: string | null
+          student_id?: string | null
+          submitted_at?: string
+          user_id: string
         }
         Update: {
+          agreement?: boolean
+          career?: string | null
+          corporation_name?: string | null
           created_at?: string
-          email?: string | null
+          double_major?: string | null
+          fields?: string[] | null
+          graduate_year?: string | null
           id?: string
-          name?: string
-          other_info?: Json | null
+          industry?: string | null
+          introduction?: string | null
+          major?: string | null
+          minor?: string | null
+          name?: string | null
+          nickname?: string | null
+          school?: string | null
+          student_id?: string | null
+          submitted_at?: string
+          user_id?: string
         }
         Relationships: []
       }

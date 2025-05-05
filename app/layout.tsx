@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Roboto, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import type { Viewport } from 'next'
+import {Toaster} from 'react-hot-toast'
+import { UserProvider } from "@/hook/use-user";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -39,12 +41,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en">
+    <html lang="en">
       <body
-          className={`${roboto.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-      {children}
+        <UserProvider>
+          <Toaster position="bottom-right" reverseOrder={false} />
+          {children}
+        </UserProvider>
       </body>
-      </html>
+    </html>
   );
 }

@@ -65,9 +65,9 @@ export async function signInWithGoogle() {
 export async function getUserInfo() {
     const supabase = await createClient()
     const {data:authData, error:authError} = await supabase.auth.getUser();
-    if (authError || !authData.user) {
+    if (authError) {
         console.log(authError)
-        return { data: null, error: authError };
+        return { data: null, error: authError.message };
     }
     const {data, error} = await supabase.from("stepsenior_users").select().eq("id", authData.user.id).single()
     if (error || !data) {

@@ -6,6 +6,7 @@ interface Props {
   description?: string;
   placeholder: string;
   required: boolean; //0, 1
+  type?: "text" | "number"
 }
 
 const TextInput = ({
@@ -13,7 +14,7 @@ const TextInput = ({
   id,
   description,
   placeholder,
-  required,
+  required, type="text"
 }: Props) => {
   return (
     <label
@@ -32,7 +33,7 @@ const TextInput = ({
       <input
         id={id}
         name={id}
-        type="text"
+        type={type}
         placeholder={placeholder}
         className="w-[80vw] sm:w-[405px] h-[45px] rounded-[8px] p-[10px] my-[5px] bg-[#F1F1EE]"
         required={required}

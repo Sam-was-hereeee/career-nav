@@ -32,9 +32,5 @@ export async function updateSession(request: NextRequest) {
         return NextResponse.redirect(new URL("/login", request.url));
     }
 
-    if (request.nextUrl.pathname.startsWith("/auth") && user) {
-        return NextResponse.redirect(new URL("/", request.url));
-    }
-
     return response;
 }

@@ -9,7 +9,9 @@ import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {getUserInfo, signUpWithEmailAndPassword} from "@lib/auth/actions";
+import {signUpWithEmailAndPassword} from "@lib/auth/actions";
+import {useUser} from "@/hook/use-user";
+import toast from "react-hot-toast";
 
 // Form Schema
 const registerSchema = z.object({
@@ -216,7 +218,30 @@ const Step1 = ({ setStep }: StepProps) => {
 const RegisterPage = () => {
     const router = useRouter();
     const [step, setStep] = useState(0);
+    const { user, isLoading, error } = useUser();
 
+    useEffect(() => {
+        if (!isLoading) {
+
+            if (user && user.has_profile) {
+                toast.success("您已完成註冊～感謝您成為職屬的一員～")
+                router.push("/");
+                return;
+            }
+        }
+    }, [isLoading, user, error, router]);
+
+    useEffect(()=>{
+        const checkUser = async ()=> {
+            if (user) {
+                if (!user.has_profile)
+                    router.push("/register/filldata");
+                else
+                    router.push("/");
+            }
+        }
+        checkUser()
+    },[user, isLoading])
     const methods = useForm<RegisterFormData>({
         resolver: zodResolver(registerSchema),
         defaultValues: {
@@ -224,6 +249,15 @@ const RegisterPage = () => {
         },
         mode: "onChange",
     });
+    if (isLoading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+            </div>
+        );
+    }
+
+
 
     const onSubmit = async (data: RegisterFormData) => {
         try {
@@ -233,18 +267,7 @@ const RegisterPage = () => {
             console.error(error);
         }
     };
-    useEffect(()=>{
-        const checkUser = async ()=> {
-            const {data} = await getUserInfo()
-            if (data) {
-                if (!data.has_profile)
-                    router.push("/register/filldata");
-                else
-                    router.push("/");
-            }
-        }
-        checkUser()
-    },[])
+
 
     return (
         <FormProvider {...methods}>

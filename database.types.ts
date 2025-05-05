@@ -136,7 +136,7 @@ export type Database = {
           double_major?: string | null
           fields?: string[] | null
           graduate_year?: string | null
-          id: string
+          id?: string
           industry?: string | null
           introduction?: string | null
           major?: string | null

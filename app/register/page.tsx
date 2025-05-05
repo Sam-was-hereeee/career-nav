@@ -12,12 +12,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {signUpWithEmailAndPassword} from "@lib/auth/actions";
 import {useUser} from "@/hook/use-user";
 import toast from "react-hot-toast";
+import {joinWaitlist} from "@lib/waitlist/actions";
 
 // Form Schema
 const registerSchema = z.object({
     isSenior: z.boolean(),
     email: z.string().email("請輸入有效的電子信箱"),
     password: z.string().min(6, "密碼至少需要6個字元"),
+    name: z.string().optional(),
+    shoutout: z.string().optional(),
 });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
@@ -74,22 +77,6 @@ const RegisterTypeSelector = ({
                     已畢業學長姊
                 </button>
             </div>
-            {!isSenior && (
-                <button
-                    type="button"
-                    onClick={handleGoogleSignup}
-                    className="w-[360px] h-[45px] mt-[32px] mb-[12px] flex items-center justify-center gap-2 rounded-[8px] border border-[#D7D8D9] bg-white shadow hover:bg-[#f5f5f5]"
-                >
-                    <img
-                        src="/google-icon.svg"
-                        alt="Google"
-                        className="w-6 h-6"
-                    />
-                    <span className="text-[16px] font-medium text-[#444]">
-                        使用 Google 註冊
-                    </span>
-                </button>
-            )}
         </div>
     );
 };
@@ -104,6 +91,7 @@ const Step0 = ({ setStep }: StepProps) => {
         formState: { errors },
     } = useFormContext<RegisterFormData>();
     const isSenior = watch("isSenior");
+    const router = useRouter()
 
     const handleNext = async () => {
         if (isSenior) {
@@ -118,10 +106,23 @@ const Step0 = ({ setStep }: StepProps) => {
                 console.log(error)
                 return;
             }
+            setStep(1);
         } else {
-
+            const isValid = await trigger(['email']);
+            if (!isValid)
+                return;
+            const [email, name, shoutout] = watch(['email', 'name', 'shoutout'])
+            const {data, error} = await joinWaitlist(
+                email, name, shoutout
+            )
+            if (error) {
+                toast.error('不好意思，出現錯誤，歡迎聯繫我們處理')
+                return;
+            }
+            toast.success('歡迎成為職屬的一員，我們會在完全上線的第一時間通知你～也歡迎到社群媒體追蹤我們')
+            router.push("/");
         }
-        setStep(1);
+
     };
 
     return (
@@ -131,13 +132,14 @@ const Step0 = ({ setStep }: StepProps) => {
                 setIsSenior={(value) => setValue("isSenior", value)}
                 handleGoogleSignup={() => {}}
             />
-            {isSenior && (
+            {(
                 <div className="flex flex-col items-center">
                     <h1 className="text-[32px]/[35px] text-black font-semibold mt-[28px]">
-                        建立職屬帳號
+                        {isSenior?"建立職屬帳號":"加入職屬～"}
                     </h1>
                     <p className="text-[16px]/[35px] text-black font-normal mb-[35px]">
-                        向學弟妹分享職涯經驗，傳承向前進的資源和動力！
+                        {isSenior?"向學弟妹分享職涯經驗，傳承向前進的資源和動力！":"留下你的基本資料，職屬上線時會第一時間通知你～"}
+
                     </p>
                     <label htmlFor="email">
                         <p className="text-[16px]/[30px] text-black font-bold mx-[3px] my-[10px]">
@@ -156,12 +158,12 @@ const Step0 = ({ setStep }: StepProps) => {
                             </p>
                         )}
                     </label>
-                    <label htmlFor="password">
+                    {isSenior? (<label htmlFor="password">
                         <p className="text-[16px]/[30px] text-black font-bold mx-[3px] my-[10px]">
                             設立密碼
                         </p>
                         <input
-                            {...register("password", { required: "請輸入密碼" })}
+                            {...register("password", {required: "請輸入密碼"})}
                             id="password"
                             type="password"
                             placeholder="輸入密碼"
@@ -172,14 +174,38 @@ const Step0 = ({ setStep }: StepProps) => {
                                 {errors.password.message}
                             </p>
                         )}
-                    </label>
-                    <RegisterProgress currentStep={0} />
+                    </label>): (<><label htmlFor="name">
+                            <p className="text-[16px]/[30px] text-black font-bold mx-[3px] my-[10px]">
+                                如何稱呼你呢
+                            </p>
+                            <input
+                                {...register("name")}
+                                id="name"
+                                type="text"
+                                placeholder="黃小明..."
+                                className="w-[360px] h-[45px] p-[10px] rounded-[8px] bg-[#F1F1EE]"
+                            />
+                        </label><label htmlFor="password">
+                            <p className="text-[16px]/[30px] text-black font-bold mx-[3px] my-[10px]">
+                                有什麼想對我們說的話嗎～
+                            </p>
+                            <input
+                                {...register("shoutout")}
+                                id="shoutout"
+                                type="text"
+                                placeholder="我想跟黃先悅交往..."
+                                className="w-[360px] h-[45px] p-[10px] rounded-[8px] bg-[#F1F1EE]"
+                            />
+                        </label></>
+                    )}
+
+                    {isSenior&&<RegisterProgress currentStep={0}/>}
                     <button
                         type="button"
                         onClick={handleNext}
-                        className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]"
+                        className="w-[141px] rounded-[20px] bg-[#728594] text-white text-center font-medium my-6 py-4"
                     >
-                        下一步
+                        {isSenior?"下一步":"加入職屬～"}
                     </button>
                 </div>
             )}
@@ -188,7 +214,7 @@ const Step0 = ({ setStep }: StepProps) => {
 };
 
 // Step 1: Email verification waiting page
-const Step1 = ({ setStep }: StepProps) => {
+const Step1 = ({setStep}: StepProps) => {
     return (
         <div className="w-full px-16 gap-5 h-[465px] pt-[45px] pb-[81px] my-[30px] flex flex-col items-center bg-white">
             <h1 className="sm:text-[24px]/[35px] text-wrap text-3xl sm:text-nowrap text-center font-semibold my-[10px]">
@@ -225,7 +251,7 @@ const RegisterPage = () => {
 
             if (user && user.has_profile) {
                 toast.success("您已完成註冊～感謝您成為職屬的一員～")
-                router.push("/");
+                router.push("/register/finish");
                 return;
             }
         }
@@ -237,7 +263,7 @@ const RegisterPage = () => {
                 if (!user.has_profile)
                     router.push("/register/filldata");
                 else
-                    router.push("/");
+                    router.push("/register/finish");
             }
         }
         checkUser()
@@ -273,7 +299,6 @@ const RegisterPage = () => {
         <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
                 <NaviBar currentPage={5} />
-                <div className="w-full h-[100px] min-h-[100px]" />
                 <div>
                     {step === 0 && <Step0 setStep={setStep} />}
                     {step === 1 && <Step1 setStep={setStep} />}

@@ -7,7 +7,7 @@ const WishBox = () => {
 
             {/* Text block */}
             <div className="flex flex-col text-center sm:text-left w-full sm:w-1/2 space-y-4">
-                <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-bold leading-tight">
+                <h1 className="text-2xl sm:text-3xl font-bold leading-tight">
                     沒看到自己感興趣的
                     <br />
                     職位或產業？

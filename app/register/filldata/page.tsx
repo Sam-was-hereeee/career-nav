@@ -324,7 +324,7 @@ const Step3 = ({ setStep }: StepProps) => {
                 return;
             }
             toast.success("歡迎加入職屬的一員～")
-            router.push("/");
+            router.push("/register/finish");
         } catch (error) {
             console.error(error);
             toast.error("提交失敗，請稍後再試");
@@ -431,7 +431,7 @@ const FillDataPage = () => {
             }
             
             if (user.has_profile) {
-                router.push("/");
+                router.push("/register/finish");
                 return;
             }
         }

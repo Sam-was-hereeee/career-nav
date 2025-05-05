@@ -24,8 +24,8 @@ const Footer = () => {
 
     return (
         <>
-            <div className="flex flex-col w-full h-[150px] bg-[#E4E2DD] border-t-[1px] border-[#D9D9D9] items-center justify-end">
-                <footer className="w-[524px] h-[80px] text-[16px]/[40px] font-normal text-center">
+            <div className="overflow-hidden flex flex-col w-full h-[150px] bg-[#E4E2DD] border-t-[1px] border-[#D9D9D9] items-center justify-end">
+                <footer className="w-full h-[80px] text-[16px]/[40px] font-normal text-center">
                     <div className="flex justify-center">
                         <button onClick={goToAboutUs}>關於我們</button>
                         <p className="whitespace-pre">{" | "}</p>

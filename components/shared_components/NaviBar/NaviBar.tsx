@@ -39,7 +39,7 @@ const NaviBar = ({ currentPage }: Props) => {
   }, [lastScrollY]);
 
   return (
-      <div className={`sticky top-0 w-full bg-[#F1F1EE] shadow z-50 transition-transform duration-300 ${
+      <div className={`overflow-hidden sticky top-0 w-full bg-[#F1F1EE] shadow z-50 transition-transform duration-300 ${
     show ? "translate-y-0" : "-translate-y-full"
   }`}>
         <div className="max-w-screen-xl px-4 sm:px-0.5 sm:mx-0 lg:px-8 py-2

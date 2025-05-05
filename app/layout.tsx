@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${roboto.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.variable} ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-auto`}
       >
         <UserProvider>
           <Toaster position="bottom-right" reverseOrder={false} />

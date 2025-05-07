@@ -16,7 +16,7 @@ export async function signUpWithEmailAndPassword(
         email,
         password,
         options: {
-            emailRedirectTo: process.env.NEXT_PUBLIC_URL + '/register/filldata',
+            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/register/filldata`,
         }
     });
     if (error) {

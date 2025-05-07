@@ -9,7 +9,7 @@ import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpWithEmailAndPassword } from "@lib/auth/actions";
+import {authEmailResend, signUpWithEmailAndPassword} from "@lib/auth/actions";
 import { useUser } from "@/hook/use-user";
 import toast from "react-hot-toast";
 import { joinWaitlist } from "@lib/waitlist/actions";
@@ -234,6 +234,10 @@ const Step0 = ({ setStep }: StepProps) => {
 
 // Step 1: Email verification waiting page
 const Step1 = ({ setStep }: StepProps) => {
+    const {
+        watch,
+    } = useFormContext<RegisterFormData>();
+    const email = watch('email')
     return (
         <div className="w-full px-16 gap-5 h-[465px] pt-[45px] pb-[81px] my-[30px] flex flex-col items-center bg-white">
             <h1 className="sm:text-[24px]/[35px] text-wrap text-3xl sm:text-nowrap text-center font-semibold my-[10px]">
@@ -243,7 +247,11 @@ const Step1 = ({ setStep }: StepProps) => {
             </h1>
             <p className="text-[14px]/[35px] font-normal text-[#5F6368]">
                 沒有收到驗證連結？
-                <button type="button" className="underline">
+                <button type="button" className="underline"
+                onClick={async ()=>{
+                    await authEmailResend(email);
+                    toast.success('寄送成功～請到電子郵件收信')
+                }}>
                     重新寄送
                 </button>
             </p>

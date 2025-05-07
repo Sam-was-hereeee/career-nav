@@ -251,8 +251,8 @@ const Step2 = ({ setStep }: StepProps) => {
                 </TextInput>
                 <TextInput
                     id="field"
-                    description="請簡單列幾項專業領域～"
-                    placeholder="簡單描述您的專業領域"
+                    description="請輸入您工作相關的技能，可輸入多項"
+                    placeholder="如：數位行銷、業務開發"
                     required={false}
                     {...register("field")}
                 >

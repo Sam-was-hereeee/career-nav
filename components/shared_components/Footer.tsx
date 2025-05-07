@@ -50,7 +50,7 @@ const Footer = () => {
             </div>
             <UnfinishedBar
                 ref={unfinishedRef}
-                discription="這個頁面在做的事"
+                discription="更多精彩功能即將上線，敬請期待～"
                 btnClicked={closeDialog}
             />
         </>

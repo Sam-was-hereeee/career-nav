@@ -39,6 +39,21 @@ export async function signUpWithEmailAndPassword(
     return { data, error: null };
 }
 
+export async function authEmailResend(email: string) {
+    const supabase = await createClient();
+    const { error } = await supabase.auth.resend({
+        type: 'signup',
+        email,
+        options: {
+            emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/register/filldata`
+        }
+    })
+    if (error) {
+        console.log(error)
+        return {data: null, error}
+    }
+}
+
 export async function signInWithEmail(email: string, password: string) {
     const supabase = await createClient();
     const {data, error} = await supabase.auth.signInWithPassword({

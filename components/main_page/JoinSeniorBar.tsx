@@ -42,13 +42,13 @@ const JoinSeniorBar = () => {
 
           <div className={"mt-2 flex-col flex gap-3 sm:flex-row sm:gap-3"}>
           <Link
-              href="./register"
+              href="/register?is-senior=true"
               className="sm:mt-6 w-fit px-6 py-3 border-2 border-[#728594] rounded-2xl bg-[#728594] text-white text-lg font-bold self-center lg:self-start"
           >
             加入學長姐行列
           </Link>
           <Link
-              href="./register"
+              href="/register?is-senior=false"
               className="sm:mt-6 w-fit px-6 py-3 border-2 border-[#728594] rounded-2xl bg-[#728594] text-white text-lg font-bold self-center lg:self-start"
           >
             成為學弟妹，找到你的職屬

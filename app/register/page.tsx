@@ -4,7 +4,7 @@ import React, {useEffect} from "react";
 import NaviBar from "@/components/shared_components/NaviBar/NaviBar";
 import Footer from "@/components/shared_components/Footer";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
 import { z } from "zod";
@@ -90,8 +90,13 @@ const Step0 = ({ setStep }: StepProps) => {
         trigger,
         formState: { errors },
     } = useFormContext<RegisterFormData>();
-    const isSenior = watch("isSenior");
+    const searchParam = useSearchParams();
+    useEffect(()=>{
+        setValue('isSenior', searchParam.get('is-senior') == 'true')
+    },[searchParam, setValue])
+    const isSenior = watch('isSenior');
     const router = useRouter()
+
 
     const handleNext = async () => {
         if (isSenior) {
@@ -245,6 +250,7 @@ const RegisterPage = () => {
     const router = useRouter();
     const [step, setStep] = useState(0);
     const { user, isLoading, error } = useUser();
+    const searchParam = useSearchParams();
 
     useEffect(() => {
         if (!isLoading) {

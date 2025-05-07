@@ -4,12 +4,12 @@ import React, { useEffect } from "react";
 import NaviBar from "@/components/shared_components/NaviBar/NaviBar";
 import Footer from "@/components/shared_components/Footer";
 import { useState } from "react";
-import {useRouter, useSearchParams} from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {authEmailResend, signUpWithEmailAndPassword} from "@lib/auth/actions";
+import { authEmailResend, signUpWithEmailAndPassword } from "@lib/auth/actions";
 import { useUser } from "@/hook/use-user";
 import toast from "react-hot-toast";
 import { joinWaitlist } from "@lib/waitlist/actions";
@@ -91,12 +91,11 @@ const Step0 = ({ setStep }: StepProps) => {
         formState: { errors },
     } = useFormContext<RegisterFormData>();
     const searchParam = useSearchParams();
-    useEffect(()=>{
-        setValue('isSenior', searchParam.get('is-senior') == 'true')
-    },[searchParam, setValue])
-    const isSenior = watch('isSenior');
-    const router = useRouter()
-
+    useEffect(() => {
+        setValue("isSenior", searchParam.get("is-senior") == "true");
+    }, [searchParam, setValue]);
+    const isSenior = watch("isSenior");
+    const router = useRouter();
 
     const handleNext = async () => {
         if (isSenior) {
@@ -104,11 +103,15 @@ const Step0 = ({ setStep }: StepProps) => {
             if (!isValid) {
                 return;
             }
-            const [email, password] = watch(["email", "password"])
-            const {error} = await signUpWithEmailAndPassword(email, password, isSenior);
+            const [email, password] = watch(["email", "password"]);
+            const { error } = await signUpWithEmailAndPassword(
+                email,
+                password,
+                isSenior,
+            );
             if (error) {
-                window.alert("註冊失敗，請稍後再試或聯絡我們")
-                console.log(error)
+                window.alert("註冊失敗，請稍後再試或聯絡我們");
+                console.log(error);
                 return;
             }
             setStep(1);
@@ -130,7 +133,6 @@ const Step0 = ({ setStep }: StepProps) => {
             );
             router.push("/");
         }
-
     };
 
     return (
@@ -211,7 +213,7 @@ const Step0 = ({ setStep }: StepProps) => {
                                     {...register("shoutout")}
                                     id="shoutout"
                                     type="text"
-                                    placeholder="我想跟黃先悅交往..."
+                                    placeholder=" 想您對平台的期待，以及任何想對我們說的話"
                                     className="w-[360px] h-[45px] p-[10px] rounded-[8px] bg-[#F1F1EE]"
                                 />
                             </label>
@@ -234,10 +236,8 @@ const Step0 = ({ setStep }: StepProps) => {
 
 // Step 1: Email verification waiting page
 const Step1 = ({ setStep }: StepProps) => {
-    const {
-        watch,
-    } = useFormContext<RegisterFormData>();
-    const email = watch('email')
+    const { watch } = useFormContext<RegisterFormData>();
+    const email = watch("email");
     return (
         <div className="w-full px-16 gap-5 h-[465px] pt-[45px] pb-[81px] my-[30px] flex flex-col items-center bg-white">
             <h1 className="sm:text-[24px]/[35px] text-wrap text-3xl sm:text-nowrap text-center font-semibold my-[10px]">
@@ -247,11 +247,14 @@ const Step1 = ({ setStep }: StepProps) => {
             </h1>
             <p className="text-[14px]/[35px] font-normal text-[#5F6368]">
                 沒有收到驗證連結？
-                <button type="button" className="underline"
-                onClick={async ()=>{
-                    await authEmailResend(email);
-                    toast.success('寄送成功～請到電子郵件收信')
-                }}>
+                <button
+                    type="button"
+                    className="underline"
+                    onClick={async () => {
+                        await authEmailResend(email);
+                        toast.success("寄送成功～請到電子郵件收信");
+                    }}
+                >
                     重新寄送
                 </button>
             </p>
@@ -277,7 +280,6 @@ const RegisterPage = () => {
 
     useEffect(() => {
         if (!isLoading) {
-
             if (user && user.has_profile) {
                 toast.success("您已完成註冊～感謝您成為職屬的一員～");
                 router.push("/register/finish");
@@ -310,8 +312,6 @@ const RegisterPage = () => {
         );
     }
 
-
-
     const onSubmit = async (data: RegisterFormData) => {
         try {
             // TODO: Submit to your API
@@ -320,7 +320,6 @@ const RegisterPage = () => {
             console.error(error);
         }
     };
-
 
     return (
         <FormProvider {...methods}>

@@ -7,7 +7,7 @@ const ArticleColumn = () => {
         thumbnail: ["/gray_bg.jpg", "/gray_bg.jpg"],
         title: [
             "【台大歷史×遊戲企劃】Rebecca Lee 專訪",
-            "【台大外文×數位廣告管理師】薛伶婕 專訪"
+            "【台大外文×數位廣告管理師】薛令婕 專訪"
         ],
         desciption: [
             "文學院培養的軟實力，幫助我快速跳轉領域",

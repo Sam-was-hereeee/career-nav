@@ -2,6 +2,7 @@
 import {createClient} from "@lib/supabase/server";
 import {TablesInsert} from "@/database.types";
 import {getUserInfo} from "@lib/auth/actions";
+import {sendEmail} from "@lib/emali/utils";
 
 type profile = TablesInsert<"user_senior_info">;
 
@@ -26,5 +27,6 @@ export async function insertSeniorProfile(profile: profile) {
     if (updateError)
         return {data: null, error: updateError}
     console.log("it gets to the end?")
+    await sendEmail('seniorRegister', user.email)
     return {data, error: null};
 }

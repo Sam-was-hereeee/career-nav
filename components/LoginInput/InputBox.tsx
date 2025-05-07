@@ -13,20 +13,22 @@ const InputBox = () => {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
-  const {refetchUser} = useUser();
+  const {refetchUser, user} = useUser();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const { data, error } = await signInWithEmail(email, password);
+
+    const { error } = await signInWithEmail(email, password);
 
     if (error) {
       setErrorMsg(error);
     } else {
       refetchUser();
       toast.success("登入成功～歡迎回來")
-      console.log("Login success:", data);
-      router.push("/");
+      if(!user?.has_profile)
+      router.push("/register/filldata");
+      else router.push('/')
     }
   };
 

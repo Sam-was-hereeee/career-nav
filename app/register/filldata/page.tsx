@@ -365,8 +365,9 @@ const Step3 = ({ setStep }: StepProps) => {
             </div>
             <Link
                 href={
-                    "https://www.notion.so/19541af62e1580828abdcb4e47bb42f2?pvs=4"
+                    "https://noon-crab-b6a.notion.site/1eb41af62e158008953df9f02cf8995e"
                 }
+                target={"_blank"}
                 className="w-[390px] h-[40px] mb-[12px] p-[10px] text-[13px]/[150%] font-normal text-center text-nowrap rounded-[8px] bg-[#B2BEC180] border-[1px] border-[#979797]"
             >
                 個資保護聲明與規約條款

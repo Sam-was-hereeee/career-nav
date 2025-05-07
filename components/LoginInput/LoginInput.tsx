@@ -4,8 +4,8 @@ import InputBox from "./InputBox";
 
 const LoginInput = () => {
   return (
-    <div className="flex flex-col sm:flex-row w-full px-[70px] py-[52px] gap-4 justify-center items-center">
-      <img className="hidden sm:visible order-2 sm:order-1 w-60 h-60 mt-3 sm:min-w-[422px] sm:min-h-[422px]" src="/loginBg.svg" />
+    <div className="flex flex-col sm:flex-row-reverse w-full px-[70px] py-[52px] gap-4 justify-center items-center">
+      <img className="max-sm:hidden visible order-2 sm:order-1 w-60 h-60 mt-3 sm:min-w-[422px] sm:min-h-[422px]" src="/loginBg.svg" />
         <div
             className="flex flex-col sm:flex-col min-w-[521px] min-h-[482px] rounded-[20px] px-[10px] py-[40px] gap-[10px] items-center">
             <h1 className="text-[24px]/[35px] font-semibold text-center whitespace-pre">
@@ -17,7 +17,7 @@ const LoginInput = () => {
                     立即註冊
                 </Link>
             </p>
-            <img className="visible sm:invisible w-60 h-60 mt-3 sm:min-w-[422px] sm:min-h-[422px]"
+            <img className="visible sm:hidden w-60 h-60 mt-3 sm:min-w-[422px] sm:min-h-[422px]"
                  src="/loginBg.svg"/>
             <InputBox/>
         </div>

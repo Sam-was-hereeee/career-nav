@@ -225,7 +225,7 @@ const Step2 = ({ setStep }: StepProps) => {
                 </h2>
                 <TextInput
                     id="career"
-                    placeholder="泡麵收藏家..."
+                    placeholder="FMCG行銷專員..."
                     required={true}
                     {...register("career")}
                 >
@@ -265,7 +265,7 @@ const Step2 = ({ setStep }: StepProps) => {
                     required={true}
                     {...register("introduction")}
                 >
-                    間單介紹自己，或是一句能代表自己的話
+                    簡單介紹自己，或是一句能代表自己的話
                 </TextInput>
             </div>
             <div className="w-[349px] h-[68px] py-[10px] mt-[100px] mb-[10px] flex justify-between">

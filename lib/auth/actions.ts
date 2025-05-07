@@ -26,13 +26,11 @@ export async function signUpWithEmailAndPassword(
     if (!data.user) {
         return { data, error: "no data lol" };
     }
-    if (data.session) {
-        await supabase.auth.setSession(data.session); // now authenticated
-    }
+    const supabaseWithAuth = await createClient(data.session?.access_token);
     console.log(data)
     const userInfo: UserInsert = {email:email, has_profile: false, is_senior: isSenior, id: data.user.id};
     const {data: profileData, error: profileError} =
-        await supabase.from("stepsenior_users").insert(userInfo)
+        await supabaseWithAuth.from("stepsenior_users").insert(userInfo)
     console.log(profileData, profileError)
     if (profileError) {
         return { data:profileData, error: profileError };

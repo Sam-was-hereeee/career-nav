@@ -3,7 +3,7 @@ import { Database } from "@/database.types";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-export const createClient = async () => {
+export const createClient = async (accessToken?: string) => {
     const cookieStore = await cookies();
 
     return createServerClient<Database>(
@@ -27,6 +27,12 @@ export const createClient = async () => {
                     }
                 },
             },
+            global: {
+                headers: accessToken
+                    ? { Authorization: `Bearer ${accessToken}` }
+                    : {},
+            },
         },
     );
 };
+

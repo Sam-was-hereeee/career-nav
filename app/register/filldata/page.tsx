@@ -14,19 +14,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useUser } from "@/hook/use-user";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import {TablesInsert} from "@/database.types";
-import {insertSeniorProfile} from "@lib/profile/actions";
+import { TablesInsert } from "@/database.types";
+import { insertSeniorProfile } from "@lib/profile/actions";
 
-type UserProfile = TablesInsert<"user_senior_info">
+type UserProfile = TablesInsert<"user_senior_info">;
 
 // Form Schema
 const registerSchema = z.object({
     // Step 1
-    graduateYr: z.coerce
-        .number()
-        .refine((val) => val < 2025 && val > 1900, {
-            message: '請輸入有效的年份',
-        }),
+    graduateYr: z.coerce.number().refine((val) => val < 2025 && val > 1900, {
+        message: "請輸入有效的年份",
+    }),
     school: z.string().min(1, "請選擇學校"),
     major: z.string().min(1, "請選擇科系"),
     doubleMajor: z.string().optional(),
@@ -66,7 +64,7 @@ const industries = [
     "人力資源業",
     "金融與投資",
     "醫療與健康產業",
-    "其他"
+    "其他",
 ];
 
 // Step 1: Academic info
@@ -87,16 +85,18 @@ const Step1 = ({ setStep }: StepProps) => {
         if (isValid) {
             setStep(2);
         } else {
-            console.log(isValid)
+            console.log(isValid);
             toast.error("請填寫所有必填欄位");
-            console.log(errors)
+            console.log(errors);
         }
     };
 
     return (
         <div className="w-full gap-5 py-[60px] flex flex-col items-center bg-white">
             <h1 className="sm:text-[24px]/[35px] text-wrap text-2xl sm:text-nowrap font-semibold my-[10px]">
-                歡迎，感謝您願意引導學弟妹啟航！<br/>創建個人檔案，分享自己的職涯軌跡
+                歡迎，感謝您願意引導學弟妹啟航！
+                <br />
+                創建個人檔案，分享自己的職涯軌跡
             </h1>
             <RegisterProgress currentStep={1} />
             <h2 className="text-[20px]/[30px] font-bold">學經歷資訊</h2>
@@ -142,9 +142,9 @@ const Step1 = ({ setStep }: StepProps) => {
                 >
                     輔修科系
                 </TextInput>
-                <TextInput 
-                    id="studentID" 
-                    placeholder="輸入學號" 
+                <TextInput
+                    id="studentID"
+                    placeholder="輸入學號"
                     required={true}
                     {...register("studentID")}
                 >
@@ -176,7 +176,7 @@ const Step1 = ({ setStep }: StepProps) => {
 const Step2 = ({ setStep }: StepProps) => {
     const {
         register,
-        formState: { errors },
+        // formState: { errors },
         trigger,
     } = useFormContext<RegisterFormData>();
 
@@ -220,7 +220,9 @@ const Step2 = ({ setStep }: StepProps) => {
                 >
                     個人檔案顯示名稱
                 </TextInput>
-                <h2 className="text-[20px]/[30px] font-bold mt-[50px]">職涯資訊</h2>
+                <h2 className="text-[20px]/[30px] font-bold mt-[50px]">
+                    職涯資訊
+                </h2>
                 <TextInput
                     id="career"
                     placeholder="泡麵收藏家..."
@@ -289,7 +291,7 @@ const Step2 = ({ setStep }: StepProps) => {
 
 // Step 3: Agreement and finish
 const Step3 = ({ setStep }: StepProps) => {
-    const {user} = useUser();
+    const { user } = useUser();
     const {
         register,
         formState: { errors },
@@ -299,7 +301,7 @@ const Step3 = ({ setStep }: StepProps) => {
 
     const onSubmit = async (data: RegisterFormData) => {
         const profile: UserProfile = {
-            user_id: user ? user.id: "fuck", // this must come from your auth session
+            user_id: user ? user.id : "fuck", // this must come from your auth session
             agreement: data.agreement,
             graduate_year: data.graduateYr?.toString(),
             school: data.school,
@@ -316,14 +318,14 @@ const Step3 = ({ setStep }: StepProps) => {
             introduction: data.introduction,
         };
         try {
-            const {data, error} = await insertSeniorProfile(profile);
+            const { data, error } = await insertSeniorProfile(profile);
             console.log(data);
             if (error) {
-                console.log(error)
-                toast.error("提交失敗，請稍後再試")
+                console.log(error);
+                toast.error("提交失敗，請稍後再試");
                 return;
             }
-            toast.success("歡迎加入職屬的一員～")
+            toast.success("歡迎加入職屬的一員～");
             router.push("/register/finish");
         } catch (error) {
             console.error(error);
@@ -362,7 +364,9 @@ const Step3 = ({ setStep }: StepProps) => {
                 </p>
             </div>
             <Link
-                href={"https://www.notion.so/19541af62e1580828abdcb4e47bb42f2?pvs=4"}
+                href={
+                    "https://www.notion.so/19541af62e1580828abdcb4e47bb42f2?pvs=4"
+                }
                 className="w-[390px] h-[40px] mb-[12px] p-[10px] text-[13px]/[150%] font-normal text-center text-nowrap rounded-[8px] bg-[#B2BEC180] border-[1px] border-[#979797]"
             >
                 個資保護聲明與規約條款
@@ -383,11 +387,15 @@ const Step3 = ({ setStep }: StepProps) => {
                     {...register("agreement")}
                 />
                 <p className="text-[13px]/[150%] font-bold text-[#596670] text-nowrap whitespace-pre-line">
-                    {"我同意在接受學弟妹的聯絡邀請後，\n於個人頁面顯示聯絡信箱給對方"}
+                    {
+                        "我同意在接受學弟妹的聯絡邀請後，\n於個人頁面顯示聯絡信箱給對方"
+                    }
                 </p>
             </label>
             {errors.agreement && (
-                <p className="text-red-500 text-sm mt-1">{errors.agreement.message}</p>
+                <p className="text-red-500 text-sm mt-1">
+                    {errors.agreement.message}
+                </p>
             )}
             <div className="w-[349px] h-[68px] py-[10px] mt-[100px] mb-[10px] flex justify-between">
                 <button
@@ -429,7 +437,7 @@ const FillDataPage = () => {
                 router.push("/login");
                 return;
             }
-            
+
             if (user.has_profile) {
                 router.push("/register/finish");
                 return;

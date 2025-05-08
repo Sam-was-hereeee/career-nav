@@ -16,8 +16,20 @@ import toast from "react-hot-toast";
 import Link from "next/link";
 import { TablesInsert } from "@/database.types";
 import { insertSeniorProfile } from "@lib/profile/actions";
+import DictionaryInput from "@components/RegisterInput/DictionaryInput";
 
 type UserProfile = TablesInsert<"user_senior_info">;
+type UserContact = TablesInsert<"user_senior_contact">
+
+// const contactSchema = z.object({
+//     dictionary: z
+//         .array(
+//             z.object({
+//                 key: z.string().min(1, "請填入聯絡資料類型"),
+//                 value: z.string().min(1, "請填入聯絡方式"),
+//             })
+//         ),
+// });
 
 // Form Schema
 const registerSchema = z.object({
@@ -41,10 +53,25 @@ const registerSchema = z.object({
     introduction: z.string().min(1, "請簡短介紹自己～讓學弟妹更能找到職屬"),
 
     // Step 3
+    commonEmail: z.string().email('請輸入有效電子郵件'),
+    line: z.string().optional(),
+    linkedIn: z.string().optional(),
+    facebook: z.string().optional(),
+    others: z
+        .array(
+            z.object({
+                key: z.string().min(1, "請填入聯絡資料類型"),
+                value: z.string().min(1, "請填入聯絡方式"),
+            })
+        )
+        .optional(),
+
     agreement: z.boolean().refine((val) => val === true, {
         message: "請同意條款",
     }),
 });
+
+
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 interface StepProps {
@@ -290,66 +317,31 @@ const Step2 = ({ setStep }: StepProps) => {
 };
 
 // Step 3: Agreement and finish
-const Step3 = ({ setStep }: StepProps) => {
-    const { user } = useUser();
+const Step3 = ({ setStep }: StepProps & { onSubmit: (data: RegisterFormData) => void }) => {
     const {
         register,
         formState: { errors },
-        handleSubmit,
     } = useFormContext<RegisterFormData>();
-    const router = useRouter();
 
-    const onSubmit = async (data: RegisterFormData) => {
-        const profile: UserProfile = {
-            user_id: user ? user.id : "fuck", // this must come from your auth session
-            agreement: data.agreement,
-            graduate_year: data.graduateYr?.toString(),
-            school: data.school,
-            major: data.major,
-            double_major: data.doubleMajor ?? null,
-            minor: data.minor ?? null,
-            student_id: data.studentID,
-            name: data.name,
-            nickname: data.nickName,
-            career: data.career,
-            industry: data.industry,
-            corporation_name: data.corporationName ?? null,
-            fields: data.field ?? null,
-            introduction: data.introduction,
-        };
-        try {
-            const { data, error } = await insertSeniorProfile(profile);
-            console.log(data);
-            if (error) {
-                console.log(error);
-                toast.error("提交失敗，請稍後再試");
-                return;
-            }
-            toast.success("歡迎加入職屬的一員～");
-            router.push("/register/finish");
-        } catch (error) {
-            console.error(error);
-            toast.error("提交失敗，請稍後再試");
-        }
-    };
+
 
     return (
         <div className="w-full gap-5 py-[52px] flex flex-col items-center bg-white">
             <h1 className="sm:text-[24px]/[35px] text-wrap text-2xl sm:text-nowrap font-semibold my-[10px] whitespace-pre inline">
                 是否以非公開形式，分享聯絡資訊？
             </h1>
-            <RegisterProgress currentStep={3} />
+            <RegisterProgress currentStep={3}/>
             <div className="text-[13px]/[150%] space-y-6 text-center text-nowrap mb-[70px]">
                 <p className="text-[#000000]">
                     成為「職屬」的引航學長姐後，
-                    <br />
+                    <br/>
                     本平台
                     <span className="font-bold">
                         不會主動於公開網頁上顯示您的聯絡資訊
                     </span>
-                    。<br />
+                    。<br/>
                     即，任何人沒有經過身份驗證、沒有經過帳號與密碼登入，
-                    <br />
+                    <br/>
                     是無法任意瀏覽您的個人檔案的。
                 </p>
                 <p className="text-[#000000]">
@@ -357,11 +349,48 @@ const Step3 = ({ setStep }: StepProps) => {
                     <span className="font-bold">
                         您可自由決定是否接受學弟妹的聯絡邀請。
                     </span>
-                    <br />
+                    <br/>
                     只有在您同意邀請後，您的個人頁面才會顯示聯絡方式，
-                    <br />
+                    <br/>
                     供學弟妹查看並聯繫您。
                 </p>
+            </div>
+            <div className="w-[360px] mx-auto">
+                <TextInput
+                    id="commonEmail"
+                    description="輸入您願意與學弟妹聯絡的電子信箱"
+                    placeholder="example@gmail.com"
+                    required={true}
+                    {...register("commonEmail")}
+                >
+                    電子郵件
+                </TextInput>
+                <TextInput
+                    id="linkedIn"
+                    placeholder="https://"
+                    required={false}
+                    {...register("linkedIn")}
+                >
+                    LinkedIn
+                </TextInput>
+                <TextInput
+                    id="line"
+                    placeholder="@lineId"
+                    required={false}
+                    {...register("line")}
+                >
+                    Line Id
+                </TextInput>
+                <TextInput
+                    id="facebook"
+                    placeholder="https://www.facebook.com..."
+                    required={false}
+                    {...register("facebook")}
+                >
+                    Facebook
+                </TextInput>
+                <DictionaryInput id={'others'}>輸入其他聯絡方式</DictionaryInput>
+
             </div>
             <Link
                 href={
@@ -370,11 +399,11 @@ const Step3 = ({ setStep }: StepProps) => {
                 target={"_blank"}
                 className="w-[390px] h-[40px] mb-[12px] p-[10px] text-[13px]/[150%] font-normal text-center text-nowrap rounded-[8px] bg-[#B2BEC180] border-[1px] border-[#979797]"
             >
-                個資保護聲明與規約條款
+                個資保護聲明與規約條款c8
             </Link>
             <p className="text-[13px]/[150%] mb-[30px] text-normal text-[#5F6368] text-nowrap whitespace-pre-line">
                 注意事項：當您填寫並同意送出註冊資料後，即表示您已閱讀、
-                <br />
+                <br/>
                 瞭解並同意接受本服務蒐集、處理及使用您的個人資料，以及雙\n方之權利與義務。
             </p>
             <label
@@ -404,16 +433,18 @@ const Step3 = ({ setStep }: StepProps) => {
                     onClick={() => setStep(2)}
                     className="w-[95px] h-[44px] py-[10px] gap-[10px] flex items-center text-base font-medium"
                 >
-                    <img src="/arrow2.svg" className="w-[9.5px] h-[17px]" />
+                    <img src="/arrow2.svg" className="w-[9.5px] h-[17px]"/>
                     上一步
                 </button>
                 <button
-                    type="button"
-                    onClick={handleSubmit(onSubmit)}
+                    type="submit"
                     className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]"
                 >
                     完成註冊
                 </button>
+                <button type='button' className={"w-[95px] h-[44px] py-[10px] gap-[10px] flex items-center text-base font-medium"} onClick={()=>{
+                    console.log(errors)
+                }}>test</button>
             </div>
         </div>
     );
@@ -422,7 +453,49 @@ const Step3 = ({ setStep }: StepProps) => {
 const FillDataPage = () => {
     const router = useRouter();
     const [step, setStep] = useState(1);
-    const { user, isLoading, error } = useUser();
+    const {user, isLoading, error} = useUser();
+    const onSubmit = async (data: RegisterFormData) => {
+        console.log('handling submit')
+        const profile: UserProfile = {
+            user_id: user ? user.id : "fuck", // this must come from your auth session
+            agreement: data.agreement,
+            graduate_year: data.graduateYr?.toString(),
+            school: data.school,
+            major: data.major,
+            double_major: data.doubleMajor ?? null,
+            minor: data.minor ?? null,
+            student_id: data.studentID,
+            name: data.name,
+            nickname: data.nickName,
+            career: data.career,
+            industry: data.industry,
+            corporation_name: data.corporationName ?? null,
+            fields: data.field ?? null,
+            introduction: data.introduction,
+        };
+        const contact: UserContact = {
+            user_id: user? user.id: 'fuck',
+            email: data.commonEmail,
+            line_id: data.line,
+            linkedin: data.linkedIn,
+            facebook: data.facebook,
+            others: data.others
+        }
+        try {
+            const { data, error } = await insertSeniorProfile(profile, contact);
+            console.log(data);
+            if (error) {
+                console.log(error);
+                toast.error("提交失敗，請稍後再試");
+                return;
+            }
+            toast.success("歡迎加入職屬的一員～");
+            router.push("/register/finish");
+        } catch (error) {
+            console.error(error);
+            toast.error("提交失敗，請稍後再試");
+        }
+    };
 
     const methods = useForm<RegisterFormData>({
         resolver: zodResolver(registerSchema),
@@ -456,14 +529,14 @@ const FillDataPage = () => {
 
     return (
         <FormProvider {...methods}>
-            <form onSubmit={methods.handleSubmit(() => {})}>
-                <NaviBar currentPage={5} />
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
+                <NaviBar currentPage={5}/>
                 <div>
-                    {step === 1 && <Step1 setStep={setStep} />}
-                    {step === 2 && <Step2 setStep={setStep} />}
-                    {step === 3 && <Step3 setStep={setStep} />}
+                    {step === 1 && <Step1 setStep={setStep}/>}
+                    {step === 2 && <Step2 setStep={setStep}/>}
+                    {step === 3 && <Step3 setStep={setStep} onSubmit={onSubmit}/>}
                 </div>
-                <Footer />
+                <Footer/>
             </form>
         </FormProvider>
     );

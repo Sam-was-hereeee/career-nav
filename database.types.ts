@@ -107,6 +107,39 @@ export type Database = {
         }
         Relationships: []
       }
+      user_senior_contact: {
+        Row: {
+          created_at: string
+          email: string
+          facebook: string | null
+          id: number
+          line_id: string | null
+          linkedin: string | null
+          others: Json | null
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          facebook?: string | null
+          id?: number
+          line_id?: string | null
+          linkedin?: string | null
+          others?: Json | null
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          facebook?: string | null
+          id?: number
+          line_id?: string | null
+          linkedin?: string | null
+          others?: Json | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       user_senior_info: {
         Row: {
           agreement: boolean
@@ -127,6 +160,7 @@ export type Database = {
           student_id: string | null
           submitted_at: string
           user_id: string
+          user_senior_contact: string | null
         }
         Insert: {
           agreement: boolean
@@ -147,6 +181,7 @@ export type Database = {
           student_id?: string | null
           submitted_at?: string
           user_id: string
+          user_senior_contact?: string | null
         }
         Update: {
           agreement?: boolean
@@ -167,6 +202,7 @@ export type Database = {
           student_id?: string | null
           submitted_at?: string
           user_id?: string
+          user_senior_contact?: string | null
         }
         Relationships: []
       }

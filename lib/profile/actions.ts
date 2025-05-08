@@ -5,8 +5,9 @@ import {getUserInfo} from "@lib/auth/actions";
 import {sendEmail} from "@lib/emali/utils";
 
 type profile = TablesInsert<"user_senior_info">;
+type contact = TablesInsert<"user_senior_contact">
 
-export async function insertSeniorProfile(profile: profile) {
+export async function insertSeniorProfile(profile: profile, contact: contact) {
     const supabase = await createClient();
     const {data:user, error: userError} = await getUserInfo();
     if (!user)
@@ -19,6 +20,11 @@ export async function insertSeniorProfile(profile: profile) {
     if (error) {
         console.log(error)
         return {data: null, error}
+    }
+    const { error: othersError} = await supabase.from("user_senior_contact").insert(contact)
+    if (othersError) {
+        console.log(othersError)
+        return {data: null, error: othersError}
     }
     const { error: updateError } = await supabase
         .from("stepsenior_users")

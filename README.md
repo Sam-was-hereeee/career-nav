@@ -14,6 +14,11 @@ pnpm dev
 bun dev
 ```
 
+## gen types
+```bash
+supabase gen types typescript --project-id pqowgxfewfetfokathqj -- schema public > database.types.ts
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.

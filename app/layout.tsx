@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
 import { Roboto, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import type { Viewport } from 'next'
-import {Toaster} from 'react-hot-toast'
+import type { Viewport } from "next";
+import { Toaster } from "react-hot-toast";
 import { UserProvider } from "@/hook/use-user";
+import Footer from "@/components/shared_components/Footer";
+import NaviBar from "@/components/shared_components/NaviBar/NaviBar";
 
 export const viewport: Viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
   // Also supported but less commonly used
   // interactiveWidget: 'resizes-visual',
-}
+};
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -47,7 +49,9 @@ export default function RootLayout({
       >
         <UserProvider>
           <Toaster position="bottom-right" reverseOrder={false} />
-          {children}
+          <NaviBar />
+          <main>{children}</main>
+          <Footer />
         </UserProvider>
       </body>
     </html>

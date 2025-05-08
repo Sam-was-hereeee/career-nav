@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect } from "react";
-import NaviBar from "@/components/shared_components/NaviBar/NaviBar";
-import Footer from "@/components/shared_components/Footer";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import RegisterProgress from "@/components/RegisterInput/RegisterProgress";
@@ -33,24 +31,24 @@ type UserContact = TablesInsert<"user_senior_contact">
 
 // Form Schema
 const registerSchema = z.object({
-    // Step 1
-    graduateYr: z.coerce.number().refine((val) => val < 2025 && val > 1900, {
-        message: "請輸入有效的年份",
-    }),
-    school: z.string().min(1, "請選擇學校"),
-    major: z.string().min(1, "請選擇科系"),
-    doubleMajor: z.string().optional(),
-    minor: z.string().optional(),
-    studentID: z.string().min(1, "請輸入學號"),
+  // Step 1
+  graduateYr: z.coerce.number().refine((val) => val < 2025 && val > 1900, {
+    message: "請輸入有效的年份",
+  }),
+  school: z.string().min(1, "請選擇學校"),
+  major: z.string().min(1, "請選擇科系"),
+  doubleMajor: z.string().optional(),
+  minor: z.string().optional(),
+  studentID: z.string().min(1, "請輸入學號"),
 
-    // Step 2
-    name: z.string().min(1, "請輸入本名"),
-    nickName: z.string().min(1, "請輸入顯示名稱"),
-    career: z.string().min(1, "請選擇職業名稱"),
-    industry: z.string().min(1, "請選擇工作產業"),
-    corporationName: z.string().optional(),
-    field: z.array(z.string()).optional(),
-    introduction: z.string().min(1, "請簡短介紹自己～讓學弟妹更能找到職屬"),
+  // Step 2
+  name: z.string().min(1, "請輸入本名"),
+  nickName: z.string().min(1, "請輸入顯示名稱"),
+  career: z.string().min(1, "請選擇職業名稱"),
+  industry: z.string().min(1, "請選擇工作產業"),
+  corporationName: z.string().optional(),
+  field: z.array(z.string()).optional(),
+  introduction: z.string().min(1, "請簡短介紹自己～讓學弟妹更能找到職屬"),
 
     // Step 3
     commonEmail: z.string().email('請輸入有效電子郵件'),
@@ -71,249 +69,240 @@ const registerSchema = z.object({
     }),
 });
 
-
-
 type RegisterFormData = z.infer<typeof registerSchema>;
 interface StepProps {
-    setStep: (step: number) => void;
+  setStep: (step: number) => void;
 }
 
 const industries = [
-    "文化創意業",
-    "行銷、廣告、公關業",
-    "新聞、出版業",
-    "影視、娛樂業",
-    "科技業",
-    "電商、零售、物流業",
-    "教育業",
-    "政府公部門",
-    "旅遊、餐飲與休閒業",
-    "人力資源業",
-    "金融與投資",
-    "醫療與健康產業",
-    "其他",
+  "文化創意業",
+  "行銷、廣告、公關業",
+  "新聞、出版業",
+  "影視、娛樂業",
+  "科技業",
+  "電商、零售、物流業",
+  "教育業",
+  "政府公部門",
+  "旅遊、餐飲與休閒業",
+  "人力資源業",
+  "金融與投資",
+  "醫療與健康產業",
+  "其他",
 ];
 
 // Step 1: Academic info
 const Step1 = ({ setStep }: StepProps) => {
-    const {
-        register,
-        formState: { errors },
-        trigger,
-    } = useFormContext<RegisterFormData>();
+  const {
+    register,
+    formState: { errors },
+    trigger,
+  } = useFormContext<RegisterFormData>();
 
-    const handleNext = async () => {
-        const isValid = await trigger([
-            "graduateYr",
-            "school",
-            "major",
-            "studentID",
-        ]);
-        if (isValid) {
-            setStep(2);
-        } else {
-            console.log(isValid);
-            toast.error("請填寫所有必填欄位");
-            console.log(errors);
-        }
-    };
+  const handleNext = async () => {
+    const isValid = await trigger([
+      "graduateYr",
+      "school",
+      "major",
+      "studentID",
+    ]);
+    if (isValid) {
+      setStep(2);
+    } else {
+      console.log(isValid);
+      toast.error("請填寫所有必填欄位");
+      console.log(errors);
+    }
+  };
 
-    return (
-        <div className="w-full gap-5 py-[60px] flex flex-col items-center bg-white">
-            <h1 className="sm:text-[24px]/[35px] text-wrap text-2xl sm:text-nowrap font-semibold my-[10px]">
-                歡迎，感謝您願意引導學弟妹啟航！
-                <br />
-                創建個人檔案，分享自己的職涯軌跡
-            </h1>
-            <RegisterProgress currentStep={1} />
-            <h2 className="text-[20px]/[30px] font-bold">學經歷資訊</h2>
-            <div className="w-[360px] mx-auto">
-                <TextInput
-                    id="graduateYr"
-                    placeholder="2005..."
-                    type={"number"}
-                    required={true}
-                    {...register("graduateYr")}
-                >
-                    畢業年份
-                </TextInput>
-                <TextInput
-                    id="school"
-                    placeholder="台大..."
-                    required={true}
-                    {...register("school")}
-                >
-                    畢業學校
-                </TextInput>
-                <TextInput
-                    id="major"
-                    placeholder="外文系..."
-                    required={true}
-                    {...register("major")}
-                >
-                    畢業科系
-                </TextInput>
-                <TextInput
-                    id="doubleMajor"
-                    placeholder="輸入雙主修科系，若無，則跳過。"
-                    required={false}
-                    {...register("doubleMajor")}
-                >
-                    雙主修科系
-                </TextInput>
-                <TextInput
-                    id="minor"
-                    placeholder="輸入輔系，若無，則跳過。"
-                    required={false}
-                    {...register("minor")}
-                >
-                    輔修科系
-                </TextInput>
-                <TextInput
-                    id="studentID"
-                    placeholder="輸入學號"
-                    required={true}
-                    {...register("studentID")}
-                >
-                    學號
-                </TextInput>
-            </div>
-            <div className="w-[349px] h-[68px] py-[10px] mt-[100px] mb-[10px] flex justify-between">
-                <button
-                    type="button"
-                    onClick={() => setStep(1)}
-                    className="w-[95px] h-[44px] py-[10px] gap-[10px] flex items-center text-base font-medium"
-                >
-                    <img src="/arrow2.svg" className="w-[9.5px] h-[17px]" />
-                    上一步
-                </button>
-                <button
-                    type="button"
-                    onClick={handleNext}
-                    className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]"
-                >
-                    下一步
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="w-full gap-5 py-[60px] flex flex-col items-center bg-white">
+      <h1 className="sm:text-[24px]/[35px] text-wrap text-2xl sm:text-nowrap font-semibold my-[10px]">
+        歡迎，感謝您願意引導學弟妹啟航！
+        <br />
+        創建個人檔案，分享自己的職涯軌跡
+      </h1>
+      <RegisterProgress currentStep={1} />
+      <h2 className="text-[20px]/[30px] font-bold">學經歷資訊</h2>
+      <div className="w-[360px] mx-auto">
+        <TextInput
+          id="graduateYr"
+          placeholder="2005..."
+          type={"number"}
+          required={true}
+          {...register("graduateYr")}
+        >
+          畢業年份
+        </TextInput>
+        <TextInput
+          id="school"
+          placeholder="台大..."
+          required={true}
+          {...register("school")}
+        >
+          畢業學校
+        </TextInput>
+        <TextInput
+          id="major"
+          placeholder="外文系..."
+          required={true}
+          {...register("major")}
+        >
+          畢業科系
+        </TextInput>
+        <TextInput
+          id="doubleMajor"
+          placeholder="輸入雙主修科系，若無，則跳過。"
+          required={false}
+          {...register("doubleMajor")}
+        >
+          雙主修科系
+        </TextInput>
+        <TextInput
+          id="minor"
+          placeholder="輸入輔系，若無，則跳過。"
+          required={false}
+          {...register("minor")}
+        >
+          輔修科系
+        </TextInput>
+        <TextInput
+          id="studentID"
+          placeholder="輸入學號"
+          required={true}
+          {...register("studentID")}
+        >
+          學號
+        </TextInput>
+      </div>
+      <div className="w-[349px] h-[68px] py-[10px] mt-[100px] mb-[10px] flex justify-between">
+        <button
+          type="button"
+          onClick={() => setStep(1)}
+          className="w-[95px] h-[44px] py-[10px] gap-[10px] flex items-center text-base font-medium"
+        >
+          <img src="/arrow2.svg" className="w-[9.5px] h-[17px]" />
+          上一步
+        </button>
+        <button
+          type="button"
+          onClick={handleNext}
+          className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]"
+        >
+          下一步
+        </button>
+      </div>
+    </div>
+  );
 };
 
 // Step 2: Personal and career info
 const Step2 = ({ setStep }: StepProps) => {
-    const {
-        register,
-        // formState: { errors },
-        trigger,
-    } = useFormContext<RegisterFormData>();
+  const {
+    register,
+    // formState: { errors },
+    trigger,
+  } = useFormContext<RegisterFormData>();
 
-    const handleNext = async () => {
-        const isValid = await trigger([
-            "name",
-            "nickName",
-            "career",
-            "industry",
-        ]);
-        if (isValid) {
-            setStep(3);
-        } else {
-            toast.error("請填寫所有必填欄位");
-        }
-    };
+  const handleNext = async () => {
+    const isValid = await trigger(["name", "nickName", "career", "industry"]);
+    if (isValid) {
+      setStep(3);
+    } else {
+      toast.error("請填寫所有必填欄位");
+    }
+  };
 
-    return (
-        <div className="w-full gap-5 py-[60px] flex flex-col items-center bg-white">
-            <h1 className="sm:text-[24px]/[35px] text-wrap text-2xl sm:text-nowrap font-semibold my-[10px]">
-                創建個人檔案，分享自己的職涯軌跡
-            </h1>
-            <RegisterProgress currentStep={2} />
-            <h2 className="text-[20px]/[30px] font-bold">個人資訊</h2>
-            <div className="w-[360px] mx-auto">
-                <TextInput
-                    id="name"
-                    description="您在此輸入的本名，不會公開於個人檔案"
-                    placeholder="輸入中文全名"
-                    required={true}
-                    {...register("name")}
-                >
-                    本名
-                </TextInput>
-                <TextInput
-                    id="nickName"
-                    description="請輸入您想公開在個人檔案上的名字"
-                    placeholder="輸入本名或暱稱"
-                    required={true}
-                    {...register("nickName")}
-                >
-                    個人檔案顯示名稱
-                </TextInput>
-                <h2 className="text-[20px]/[30px] font-bold mt-[50px]">
-                    職涯資訊
-                </h2>
-                <TextInput
-                    id="career"
-                    placeholder="FMCG行銷專員..."
-                    required={true}
-                    {...register("career")}
-                >
-                    目前您的職業名稱？
-                </TextInput>
-                <SelectInput
-                    id="industry"
-                    placeholder="選擇工作產業"
-                    optionArr={industries}
-                    valueArr={industries}
-                    required={true}
-                    {...register("industry")}
-                >
-                    目前您的工作產業？
-                </SelectInput>
-                <TextInput
-                    id="corporationName"
-                    placeholder="輸入您的公司或機構，非必填。"
-                    required={false}
-                    {...register("corporationName")}
-                >
-                    目前您所在的公司/機構名稱？
-                </TextInput>
-                <TextInput
-                    id="field"
-                    description="請輸入您工作相關的技能，可輸入多項"
-                    placeholder="如：數位行銷、業務開發"
-                    required={false}
-                    {...register("field")}
-                >
-                    您的專業領域？
-                </TextInput>
-                <TextInput
-                    id="introduction"
-                    description="讓學弟妹更快速地認識您"
-                    placeholder="輸入個人簡介"
-                    required={true}
-                    {...register("introduction")}
-                >
-                    簡單介紹自己，或是一句能代表自己的話
-                </TextInput>
-            </div>
-            <div className="w-[349px] h-[68px] py-[10px] mt-[100px] mb-[10px] flex justify-between">
-                <button
-                    type="button"
-                    onClick={() => setStep(1)}
-                    className="w-[95px] h-[44px] py-[10px] gap-[10px] flex items-center text-base font-medium"
-                >
-                    <img src="/arrow2.svg" className="w-[9.5px] h-[17px]" />
-                    上一步
-                </button>
-                <button
-                    type="button"
-                    onClick={handleNext}
-                    className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]"
-                >
-                    下一步
-                </button>
-            </div>
-        </div>
-    );
+  return (
+    <div className="w-full gap-5 py-[60px] flex flex-col items-center bg-white">
+      <h1 className="sm:text-[24px]/[35px] text-wrap text-2xl sm:text-nowrap font-semibold my-[10px]">
+        創建個人檔案，分享自己的職涯軌跡
+      </h1>
+      <RegisterProgress currentStep={2} />
+      <h2 className="text-[20px]/[30px] font-bold">個人資訊</h2>
+      <div className="w-[360px] mx-auto">
+        <TextInput
+          id="name"
+          description="您在此輸入的本名，不會公開於個人檔案"
+          placeholder="輸入中文全名"
+          required={true}
+          {...register("name")}
+        >
+          本名
+        </TextInput>
+        <TextInput
+          id="nickName"
+          description="請輸入您想公開在個人檔案上的名字"
+          placeholder="輸入本名或暱稱"
+          required={true}
+          {...register("nickName")}
+        >
+          個人檔案顯示名稱
+        </TextInput>
+        <h2 className="text-[20px]/[30px] font-bold mt-[50px]">職涯資訊</h2>
+        <TextInput
+          id="career"
+          placeholder="FMCG行銷專員..."
+          required={true}
+          {...register("career")}
+        >
+          目前您的職業名稱？
+        </TextInput>
+        <SelectInput
+          id="industry"
+          placeholder="選擇工作產業"
+          optionArr={industries}
+          valueArr={industries}
+          required={true}
+          {...register("industry")}
+        >
+          目前您的工作產業？
+        </SelectInput>
+        <TextInput
+          id="corporationName"
+          placeholder="輸入您的公司或機構，非必填。"
+          required={false}
+          {...register("corporationName")}
+        >
+          目前您所在的公司/機構名稱？
+        </TextInput>
+        <TextInput
+          id="field"
+          description="請輸入您工作相關的技能，可輸入多項"
+          placeholder="如：數位行銷、業務開發"
+          required={false}
+          {...register("field")}
+        >
+          您的專業領域？
+        </TextInput>
+        <TextInput
+          id="introduction"
+          description="讓學弟妹更快速地認識您"
+          placeholder="輸入個人簡介"
+          required={true}
+          {...register("introduction")}
+        >
+          簡單介紹自己，或是一句能代表自己的話
+        </TextInput>
+      </div>
+      <div className="w-[349px] h-[68px] py-[10px] mt-[100px] mb-[10px] flex justify-between">
+        <button
+          type="button"
+          onClick={() => setStep(1)}
+          className="w-[95px] h-[44px] py-[10px] gap-[10px] flex items-center text-base font-medium"
+        >
+          <img src="/arrow2.svg" className="w-[9.5px] h-[17px]" />
+          上一步
+        </button>
+        <button
+          type="button"
+          onClick={handleNext}
+          className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-[60px]"
+        >
+          下一步
+        </button>
+      </div>
+    </div>
+  );
 };
 
 // Step 3: Agreement and finish
@@ -497,46 +486,44 @@ const FillDataPage = () => {
         }
     };
 
-    const methods = useForm<RegisterFormData>({
-        resolver: zodResolver(registerSchema),
-        defaultValues: {
-            field: [],
-        },
-        mode: "onChange",
-    });
+  const methods = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: {
+      field: [],
+    },
+    mode: "onChange",
+  });
 
-    useEffect(() => {
-        if (!isLoading) {
-            if (error || !user) {
-                router.push("/login");
-                return;
-            }
+  useEffect(() => {
+    if (!isLoading) {
+      if (error || !user) {
+        router.push("/login");
+        return;
+      }
 
-            if (user.has_profile) {
-                router.push("/register/finish");
-                return;
-            }
-        }
-    }, [isLoading, user, error, router]);
-
-    if (isLoading) {
-        return (
-            <div className="flex items-center justify-center min-h-screen">
-                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-            </div>
-        );
+      if (user.has_profile) {
+        router.push("/register/finish");
+        return;
+      }
     }
+  }, [isLoading, user, error, router]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    );
+  }
 
     return (
         <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
-                <NaviBar currentPage={5}/>
                 <div>
                     {step === 1 && <Step1 setStep={setStep}/>}
                     {step === 2 && <Step2 setStep={setStep}/>}
                     {step === 3 && <Step3 setStep={setStep} onSubmit={onSubmit}/>}
                 </div>
-                <Footer/>
             </form>
         </FormProvider>
     );

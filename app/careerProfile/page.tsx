@@ -2,10 +2,8 @@
 
 import React, { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import NaviBar from "@/components/shared_components/NaviBar/NaviBar";
 import SideBar from "@components/SideBar/SideBar";
 import WishBox from "@components/WishBox/WishBox";
-import Footer from "@/components/shared_components/Footer";
 import SearchResult from "@components/SearchResult/SearchResult";
 import SearchProfile from "@components/SearchProfile/SearchProfile";
 import UnfinishedBar from "@/components/unfinished/UnfinishedBar";
@@ -28,7 +26,6 @@ const CareerProfilePage = () => {
 
   return (
     <div>
-      <NaviBar currentPage={1} />
       <div className="w-full h-[100px] min-h-[100px]" />
       <SearchProfile />
       <div className="flex w-full h-[1850px]">
@@ -36,7 +33,6 @@ const CareerProfilePage = () => {
         <SearchResult />
       </div>
       <WishBox />
-      <Footer />
       <UnfinishedBar
         ref={unfinishedBarRef}
         discription="更多精彩功能即將上線，敬請期待～"

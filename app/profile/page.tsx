@@ -3,10 +3,12 @@ import WishBox from "@components/WishBox/WishBox";
 import PersonInfo from "@components/profile_page/PersonInfo";
 import ExperienceBox from "@/components/profile_page/ExperienceBox";
 import ExperienceEntry from "@/components/profile_page/ExperienceEntry";
+import SearchBar from "@/components/profile_page/SearchBar";
 
 const Page = () => {
   return (
     <div>
+      <SearchBar></SearchBar>
       <PersonInfo />
       <div className="flex flex-col h-auto py-10 gap-8 items-center">
         <ExperienceBox type="工作經驗">

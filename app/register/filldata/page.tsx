@@ -388,7 +388,7 @@ const Step3 = ({ setStep }: StepProps & { onSubmit: (data: RegisterFormData) => 
                 target={"_blank"}
                 className="w-[390px] h-[40px] mb-[12px] p-[10px] text-[13px]/[150%] font-normal text-center text-nowrap rounded-[8px] bg-[#B2BEC180] border-[1px] border-[#979797]"
             >
-                個資保護聲明與規約條款c8
+                個資保護聲明與規約條款
             </Link>
             <p className="text-[13px]/[150%] mb-[30px] text-normal text-[#5F6368] text-nowrap whitespace-pre-line">
                 注意事項：當您填寫並同意送出註冊資料後，即表示您已閱讀、
@@ -431,9 +431,6 @@ const Step3 = ({ setStep }: StepProps & { onSubmit: (data: RegisterFormData) => 
                 >
                     完成註冊
                 </button>
-                <button type='button' className={"w-[95px] h-[44px] py-[10px] gap-[10px] flex items-center text-base font-medium"} onClick={()=>{
-                    console.log(errors)
-                }}>test</button>
             </div>
         </div>
     );

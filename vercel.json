@@ -1,6 +1,5 @@
 {
   "buildCommand": "pnpm build",
   "outputDirectory": ".next",
-  "ignoreCommand": "echo 'no ignore'",
   "framework": "nextjs"
 }

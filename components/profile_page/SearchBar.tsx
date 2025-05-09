@@ -5,14 +5,12 @@ import React, { useState } from "react";
 import TagSelect from "../shared_components/TagSelect";
 import {
   Command,
-  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
 
 const SearchBar = () => {

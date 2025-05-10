@@ -35,7 +35,7 @@ const NaviBar = () => {
       const currentScrollY = window.scrollY;
       const delta = currentScrollY - lastScrollY;
 
-      if (delta > 5) {
+      if (currentScrollY > 85 && delta > 5) {
         setShow(false); // scrolling down → hide navbar
       } else if (delta < -2) {
         setShow(true); // scrolling up → show navbar

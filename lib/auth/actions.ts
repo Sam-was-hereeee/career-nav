@@ -30,7 +30,7 @@ export async function signUpWithEmailAndPassword(
     console.log(data)
     const userInfo: UserInsert = {email:email, has_profile: false, is_senior: isSenior, id: data.user.id};
     const {data: profileData, error: profileError} =
-        await supabaseWithAuth.from("stepsenior_users").insert(userInfo)
+        await supabaseWithAuth.from("stepsenior_users").upsert(userInfo)
     console.log(profileData, profileError)
     if (profileError) {
         return { data:profileData, error: profileError };

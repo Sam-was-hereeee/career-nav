@@ -16,12 +16,12 @@ export async function insertSeniorProfile(profile: profile, contact: contact) {
         console.log("profile exists")
         return {data: null, error: "profile already exists"}
     }
-    const {data, error} = await supabase.from("user_senior_info").insert(profile)
+    const {data, error} = await supabase.from("user_senior_info").upsert(profile)
     if (error) {
         console.log(error)
         return {data: null, error}
     }
-    const { error: othersError} = await supabase.from("user_senior_contact").insert(contact)
+    const { error: othersError} = await supabase.from("user_senior_contact").upsert(contact)
     if (othersError) {
         console.log(othersError)
         return {data: null, error: othersError}

@@ -49,7 +49,7 @@ const AccountBtn = ({ currentPage, loggedIn }: Props) => {
       <div
         className="w-[40px] h-[40px] rounded-full ml-4"
         onClick={() => {
-          router.push(loggedIn ? "/profile" : "/login=");
+          router.push(loggedIn ? "/profile" : "/login");
         }}
       >
         <img

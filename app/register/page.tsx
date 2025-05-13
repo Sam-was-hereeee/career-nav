@@ -302,18 +302,9 @@ const RegisterPage = () => {
     );
   }
 
-  const onSubmit = async (data: RegisterFormData) => {
-    try {
-      // TODO: Submit to your API
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
+      <form>
         <div>
           {step === 0 && <Step0 setStep={setStep} />}
           {step === 1 && <Step1 setStep={setStep} />}

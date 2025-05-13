@@ -33,6 +33,7 @@ export async function insertSeniorProfile(profile: profile, contact: contact) {
     if (updateError)
         return {data: null, error: updateError}
     console.log("it gets to the end?")
+
     await sendEmail('seniorRegister', user.email)
     return {data, error: null};
 }

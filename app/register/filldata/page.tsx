@@ -434,7 +434,7 @@ const Step3 = ({
 const FillDataPage = () => {
   const router = useRouter();
   const [step, setStep] = useState(1);
-  const { user, isLoading, error } = useUser();
+  const { user, isLoading, error, refetchUser } = useUser();
   const onSubmit = async (data: RegisterFormData) => {
     console.log("handling submit");
     const profile: UserProfile = {
@@ -471,6 +471,7 @@ const FillDataPage = () => {
         return;
       }
       toast.success("歡迎加入職屬的一員～");
+      refetchUser();
       router.push("/register/finish");
     } catch (error) {
       console.error(error);

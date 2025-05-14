@@ -22,28 +22,23 @@ const emailContent = {
             '\n' +
             '職屬｜Step Senior\n' +
             '創辦人\n' +
-            '黃先悅｜Jocelyn Huang\n （早安我是職屬的工程師山姆，在這邊偷塞我的廣告，不知道各位學長姐是否也受夠社會對於文組無用的風氣了，我相信先悅正在創造這個時代應該要有的改變，還請大家一起支持見證我們了～',
+            '黃先悅｜Jocelyn Huang\n',
         html: `
             <p>您好，</p>
-            <br/>
             <p>我是職屬的創辦人，台大外文系二年級的先悅。</p>
-            <br/>
             <p>感謝您註冊成為「職屬」的引路學長姐！</p>
-            <br/>
             <p>半年來，我們不斷思索「文學院畢業後的未來何在？」並嘗試帶來正向改變。因此加入「職屬」的您，對我們這群在學的文學院學生意義非凡！作為走過職涯探索之旅的前行者，您的足跡將成為某個學弟妹心中珍貴的指引。學弟妹可以從您的經驗中看見更多自身發展的可能性。您的參與，將讓學弟妹們在各自的英雄之旅上，不再隻身前行 🤝</p>
-            <br/>
             <p>我們將持續推出能夠促進文學院學生與校友對話的活動，讓「職屬」不只是一對一職業諮詢平台，更是一個以人文價值為本，交流職涯發展歷程的溫暖社群。</p>
-            <br/>
-            <p>歡迎您加入【職屬】匿名社群，與其他文學院職屬學長姐交流想法，認識更多來自不同領域的夥伴！</p>
-            <p>👉 <a href="https://line.me/ti/g2/rAlwtXhkZQXfTC3SYwb_9_Kx_1uN4w_4jUbNYg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">加入職屬</a></p>
-            <p>再次感謝您的加入，期待與您一同描繪人文學子的職涯地圖！</p>
-            <br/>
+            <p>歡迎您加入【職屬】匿名社群，與其他文學院職屬學長姐交流想法，認識更多來自不同領域的夥伴！<br/>
+            👉 <a href="https://line.me/ti/g2/rAlwtXhkZQXfTC3SYwb_9_Kx_1uN4w_4jUbNYg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default">加入職屬</a></p><br/>
+            再次感謝您的加入，期待與您一同描繪人文學子的職涯地圖！
+            </p>
             <p>May your own journey shine bright✨</p>
-            <br/>
-            <p>職屬｜Step Senior</p>
-            <p>創辦人</p>
-            <p>黃先悅｜Jocelyn Huang</p>
-            <p>（早安我是職屬的工程師山姆，在這邊偷塞我的廣告，不知道各位學長姐是否也受夠社會對於文組無用的風氣了，我相信先悅正在創造這個時代應該要有的改變，還請大家一起支持見證我們了～</p>
+            <p>
+            職屬｜Step Senior<br/>
+            創辦人<br/>
+            黃先悅｜Jocelyn Huang
+            </p>
         `
 
     }

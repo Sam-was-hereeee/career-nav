@@ -47,7 +47,7 @@ const registerSchema = z.object({
   career: z.string().min(1, "請選擇職業名稱"),
   industry: z.string().min(1, "請選擇工作產業"),
   corporationName: z.string().optional(),
-  field: z.array(z.string()).optional(),
+  field: z.string().optional(),
   introduction: z.string().min(1, "請簡短介紹自己～讓學弟妹更能找到職屬"),
 
   // Step 3
@@ -451,7 +451,7 @@ const FillDataPage = () => {
       career: data.career,
       industry: data.industry,
       corporation_name: data.corporationName ?? null,
-      fields: data.field ?? null,
+      fields: [data.field ?? ""],
       introduction: data.introduction,
     };
     const contact: UserContact = {
@@ -482,7 +482,7 @@ const FillDataPage = () => {
   const methods = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      field: [],
+      field: "",
     },
     mode: "onChange",
   });

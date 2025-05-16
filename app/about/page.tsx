@@ -2,11 +2,11 @@ import React from "react";
 import AboutUs from "@components/main_page/AboutUs";
 
 const AboutPage = () => {
-  return (
-    <div>
-      <AboutUs />
-    </div>
-  );
+    return (
+        <div>
+            <AboutUs />
+        </div>
+    );
 };
 
 export default AboutPage;

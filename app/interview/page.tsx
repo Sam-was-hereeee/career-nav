@@ -1,13 +1,18 @@
-import React from "react";
-import NotFound404 from "@/components/unfinished/NotFound404";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const InterviewPage = () => {
-  return (
-    <div>
-      <div className="w-full h-[100px] min-h-[100px]" />
-      <NotFound404 />
-    </div>
-  );
+    const router = useRouter();
+
+    useEffect(() => {
+        const url = "https://www.instagram.com/p/DHyHjYdyYtb/";
+        window.open(url, "_blank");
+        router.back();
+    }, []);
+
+    return null;
 };
 
 export default InterviewPage;

@@ -10,12 +10,12 @@ const AboutPage = () => {
                     "w-4/5 px-10 mx-auto flex flex-col items-center justify-center mt-8"
                 }
             >
-                <h1 className="text-wrap text-2xl sm:text-3xl sm:text-nowrap font-semibold mt-[15px] whitespace-pre inline">
-                    {"歡迎加入，\n職屬正式上線後\n將於第一時間通知您！"}
+                <h1 className="text-wrap inline sm:hidden text-2xl sm:text-3xl sm:text-nowrap font-semibold mt-[15px] whitespace-pre">
+                    {"歡迎加入，職屬正式上線後將於第一時間通知您！"}
                 </h1>
                 <div
                     className={
-                        "w-full flex-col flex sm:flex-row items-center justify-center mt-8"
+                        "w-full flex-col flex sm:flex-row items-center justify-center my-8"
                     }
                 >
                     <img
@@ -23,11 +23,17 @@ const AboutPage = () => {
                         alt={"thank you"}
                         className={"py-4 mx-auto contain-content w-60"}
                     ></img>
-                    <p className="whitespace-pre-wrap text-center text-xl">
-                        {"👥 現在就加入 LINE Open Chat 社群【職屬｜文學院職涯經驗交流】，\n" +
-                            "獲得文學院專屬職缺資訊，\n" +
-                            "也可以和在職學長姐、同儕一起討論職涯方向、就職經驗！"}
-                    </p>
+
+                    <div className="flex-col space-y-8">
+                        <h1 className="text-wrap hidden sm:inline text-2xl sm:text-3xl sm:text-nowrap font-semibold mt-[15px] whitespace-pre">
+                            {"歡迎加入，職屬正式上線後將於第一時間通知您！"}
+                        </h1>
+                        <p className="whitespace-pre-wrap text-center text-xl/10 sm:text-left">
+                            {"👥 現在就加入 LINE Open Chat 社群【職屬｜文學院職涯經驗交流】，\n" +
+                                "獲得文學院專屬職缺資訊，\n" +
+                                "也可以和在職學長姐、同儕一起討論職涯方向、就職經驗！"}
+                        </p>
+                    </div>
                 </div>
                 <button
                     type="button"

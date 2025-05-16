@@ -2,43 +2,55 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 const AboutPage = () => {
-  const router = useRouter();
-  return (
-    <div>
-      <div
-        className={
-          "w-2/3 px-10 mx-auto flex flex-col items-center justify-center mt-8"
-        }
-      >
-        <h1 className="text-wrap text-2xl sm:text-3xl sm:text-nowrap font-semibold mt-[10px] whitespace-pre inline">
-          {"您已成功註冊\n歡迎加入職屬！"}
-        </h1>
-        <div
-          className={"w-full flex flex-row items-center justify-center mt-8"}
-        >
-          <img
-            src={"/happy.svg"}
-            alt={"thank you"}
-            className={"py-4 mx-auto contain-content w-60"}
-          ></img>
-          <p className={"whitespace-pre inline text-center text-xl"}>
-            {"我們相信，每段職涯經驗都是值得分享的故事。\n" +
-              "職屬希望能讓文學院學生看見更多職業發展的可能性，\n" +
-              "也讓前行者的足跡成為後來者的燈塔。"}
-          </p>
+    const router = useRouter();
+    return (
+        <div>
+            <div
+                className={
+                    "w-2/3 px-10 mx-auto flex flex-col items-center justify-center mt-8"
+                }
+            >
+                <h1 className="text-wrap text-2xl sm:text-3xl sm:text-nowrap font-semibold mt-[10px] whitespace-pre inline">
+                    {"歡迎加入，\n職屬正式上線後\n將於第一時間通知您！"}
+                </h1>
+                <div
+                    className={
+                        "w-full flex flex-row items-center justify-center mt-8"
+                    }
+                >
+                    <img
+                        src={"/happy.svg"}
+                        alt={"thank you"}
+                        className={"py-4 mx-auto contain-content w-60"}
+                    ></img>
+                    <p className={"whitespace-pre inline text-center text-xl"}>
+                        {"👥 現在就加入 LINE Open Chat 社群【職屬｜文學院職涯經驗交流】，\n" +
+                            "獲得文學院專屬職缺資訊，\n" +
+                            "也可以和在職學長姐、同儕一起討論職涯方向、就職經驗！"}
+                    </p>
+                </div>
+                <button
+                    type="button"
+                    onClick={() => {
+                        location.href =
+                            "https://line.me/ti/g2/rAlwtXhkZQXfTC3SYwb_9_Kx_1uN4w_4jUbNYg?utm_source=invitation&utm_medium=link_copy&utm_campaign=default";
+                    }}
+                    className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-6"
+                >
+                    加入 LINE 社群
+                </button>
+                <button
+                    type="button"
+                    onClick={() => {
+                        router.push("/");
+                    }}
+                    className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#979797] text-white font-medium mb-6"
+                >
+                    回到首頁
+                </button>
+            </div>
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            router.push("/");
-          }}
-          className="w-[141px] h-[48px] rounded-[20px] p-[12px] bg-[#728594] text-white font-medium mb-6"
-        >
-          回到首頁
-        </button>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default AboutPage;

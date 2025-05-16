@@ -7,10 +7,10 @@ const AboutPage = () => {
         <div>
             <div
                 className={
-                    "w-2/3 px-10 mx-auto flex flex-col items-center justify-center mt-8"
+                    "w-4/5 px-10 mx-auto flex flex-col items-center justify-center mt-8"
                 }
             >
-                <h1 className="text-wrap text-2xl sm:text-3xl sm:text-nowrap font-semibold mt-[10px] whitespace-pre inline">
+                <h1 className="text-wrap text-2xl sm:text-3xl sm:text-nowrap font-semibold mt-[15px] whitespace-pre inline">
                     {"歡迎加入，\n職屬正式上線後\n將於第一時間通知您！"}
                 </h1>
                 <div
@@ -23,7 +23,7 @@ const AboutPage = () => {
                         alt={"thank you"}
                         className={"py-4 mx-auto contain-content w-60"}
                     ></img>
-                    <p className={"whitespace-pre inline text-center text-xl"}>
+                    <p className="whitespace-pre-wrap text-center text-xl">
                         {"👥 現在就加入 LINE Open Chat 社群【職屬｜文學院職涯經驗交流】，\n" +
                             "獲得文學院專屬職缺資訊，\n" +
                             "也可以和在職學長姐、同儕一起討論職涯方向、就職經驗！"}

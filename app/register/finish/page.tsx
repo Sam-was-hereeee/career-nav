@@ -15,7 +15,7 @@ const AboutPage = () => {
                 </h1>
                 <div
                     className={
-                        "w-full flex flex-row items-center justify-center mt-8"
+                        "w-full flex-col flex sm:flex-row items-center justify-center mt-8"
                     }
                 >
                     <img

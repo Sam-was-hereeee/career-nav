@@ -129,7 +129,7 @@ const Step0 = ({ setStep }: StepProps) => {
             toast.success(
                 "歡迎成為職屬的一員，我們會在完全上線的第一時間通知你～也歡迎到社群媒體追蹤我們",
             );
-            router.push("/finish");
+            router.push("/register/finish");
         }
     };
 

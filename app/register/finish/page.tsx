@@ -28,10 +28,15 @@ const AboutPage = () => {
                         <h1 className="text-wrap hidden sm:inline text-2xl sm:text-3xl sm:text-nowrap font-semibold mt-[15px] whitespace-pre">
                             {"歡迎加入，職屬正式上線後將於第一時間通知您！"}
                         </h1>
-                        <p className="whitespace-pre-wrap text-center text-xl/10 sm:text-left">
+                        <p className="hidden sm:block whitespace-pre-wrap text-center text-md sm:text-xl/10 sm:text-left">
                             {"👥 現在就加入 LINE Open Chat 社群【職屬｜文學院職涯經驗交流】，\n" +
                                 "獲得文學院專屬職缺資訊，\n" +
                                 "也可以和在職學長姐、同儕一起討論職涯方向、就職經驗！"}
+                        </p>
+                        <p className="sm:hidden whitespace-pre-wrap text-md sm:text-xl/10 text-left">
+                            {
+                                "👥 現在就加入 LINE Open Chat 社群【職屬｜文學院職涯經驗交流】，獲得文學院專屬職缺資訊，也可以和在職學長姐、同儕一起討論職涯方向、就職經驗！"
+                            }
                         </p>
                     </div>
                 </div>

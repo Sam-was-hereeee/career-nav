@@ -63,9 +63,6 @@ const AboutUs = () => {
                 src="/group_photo.png"
                 alt="group photo"
             />
-            <p className="text-[16px]/[150%] font-normal text-[#5F6368] text-center text-nowrap">
-                職屬初期團隊 2024 年合照
-            </p>
         </div>
     );
 };

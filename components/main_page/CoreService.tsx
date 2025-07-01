@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const CoreService = () => {
   const services: { image: string; title: string; description: string }[] = [
@@ -38,7 +39,14 @@ const CoreService = () => {
             key={index}
             className="w-[241px] h-[296px] rounded-[20px] py-[32px] flex flex-col items-center gap-[20px] bg-white shadow-lg"
           >
-            <img className="h-[100px]" src={service.image} alt="service" />
+            <div className="w-1/2 aspect-[100/87] relative">
+              <Image
+                src={service.image}
+                alt={`service${index + 1}`}
+                className="object-contain"
+                fill
+              />
+            </div>
             <h5 className="text-base font-bold text-black text-center text-nowrap">
               {service.title}
             </h5>

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { signOut } from "@lib/auth/actions";
 import { useUser } from "@/hook/use-user"; // or however you create your client
@@ -47,15 +48,16 @@ const AccountBtn = ({ currentPage, loggedIn }: Props) => {
       )}
 
       <div
-        className="w-[40px] h-[40px] rounded-full ml-4"
+        className="w-10 h-10 rounded-full ml-4 cursor-pointer relative"
         onClick={() => {
           router.push(loggedIn ? "/profile" : "/login");
         }}
       >
-        <img
-          className="w-full h-full cursor-pointer"
+        <Image
           src="/NaviBar/avatar.svg"
           alt="avatar"
+          className="object-cover"
+          fill
         />
       </div>
     </div>

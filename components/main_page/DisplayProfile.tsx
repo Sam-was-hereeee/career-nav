@@ -1,23 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
 import Profile from "../shared_components/Profile";
 import Link from "next/link";
-import UnfinishedBar from "../unfinished/UnfinishedBar";
+import { ProfileContainer } from "../shared_components/ProfileContainer";
 
 const DisplayProfile = () => {
-  const unfinishedRef = useRef<HTMLDialogElement>(null);
-
-  const openDialog = () => {
-    unfinishedRef.current?.showModal();
-    document.body.style.overflow = "hidden";
-  };
-
-  const closeDialog = () => {
-    unfinishedRef.current?.close();
-    document.body.style.overflow = "";
-  };
-
   const profiles = [
     {
       name: "行銷經理",
@@ -69,10 +56,7 @@ const DisplayProfile = () => {
         </div>
 
         {/* Profile Grid */}
-        <div
-          onClick={openDialog}
-          className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 w-full place-content-around place-items-center"
-        >
+        <ProfileContainer gridcols={2} gridcolsSm={3}>
           {profiles.map((profile, index) => (
             <Profile
               key={index}
@@ -82,7 +66,7 @@ const DisplayProfile = () => {
               description={profile.description}
             />
           ))}
-        </div>
+        </ProfileContainer>
 
         {/* CTA Button */}
         <div className="justify-self-center">
@@ -94,11 +78,6 @@ const DisplayProfile = () => {
           </Link>
         </div>
       </div>
-      <UnfinishedBar
-        ref={unfinishedRef}
-        discription="更多精彩功能即將上線，敬請期待～"
-        btnClicked={closeDialog}
-      />
     </>
   );
 };

@@ -4,7 +4,7 @@ import ArticleResult from "./ArticleResult";
 
 const SearchResult = () => {
   return (
-    <div className="flex flex-col w-full min-w-[1043px] h-[1850px]">
+    <div className="flex flex-col w-full">
       <ProfileResult />
       <ArticleResult />
     </div>

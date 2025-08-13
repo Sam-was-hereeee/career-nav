@@ -10,21 +10,21 @@ interface Props {
 
 const Profile = ({ profileImg, name, career, description }: Props) => {
   return (
-    <div className="flex flex-col w-52 h-auto bg-[#F5F5F5] rounded-[20px] items-center p-5 gap-4 text-center">
+    <div className="flex flex-col w-44 sm:w-52 h-auto bg-[#F5F5F5] rounded-[20px] items-center p-5 gap-4 text-center">
       {/* Avatar */}
-      <div className="w-20 h-20 rounded-full bg-black/5 overflow-hidden relative">
+      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-black/5 overflow-hidden relative">
         <Image src={profileImg} alt={name} className="object-cover" fill />
       </div>
 
       {/* Name and Career */}
       <div className="flex flex-col w-full items-center space-y-1">
-        <h3 className="text-lg font-bold">{name}</h3>
-        <p className="text-sm text-black/50">{career}</p>
+        <h3 className="text-base sm:text-lg font-bold">{name}</h3>
+        <p className="text-xs sm:text-sm text-black/50">{career}</p>
       </div>
 
       {/* Description */}
       <div className="w-full">
-        <p className="text-sm font-medium whitespace-pre-line leading-relaxed">
+        <p className="text-xs sm:text-sm font-medium whitespace-pre-line leading-relaxed">
           {description}
         </p>
       </div>

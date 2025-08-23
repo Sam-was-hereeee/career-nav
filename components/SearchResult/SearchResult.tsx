@@ -1,12 +1,13 @@
 import React from "react";
 import ProfileResult from "./ProfileResult";
-import ArticleResult from "./ArticleResult";
+import ArticleColumn from "../shared_components/ArticleColumn";
 
 const SearchResult = () => {
   return (
     <div className="flex flex-col w-full">
       <ProfileResult />
-      <ArticleResult />
+      {/* <ArticleResult /> */}
+      <ArticleColumn />
     </div>
   );
 };

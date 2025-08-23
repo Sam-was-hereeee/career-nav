@@ -6,7 +6,7 @@ import { ProfileContainer } from "../shared_components/ProfileContainer";
 const ProfileResult = () => {
   const test = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   return (
-    <div className="flex flex-col w-full px-[40px] py-[30px] gap-[40px] items-center">
+    <div className="flex flex-col w-full px-5 py-[30px] gap-[40px] items-center">
       <div className="flex flex-col w-full h-[82px] gap-[10px] text-center">
         <h1 className="text-[40px]/[48px] font-bold">資訊軟體產業</h1>
         <p className="text-base font-normal">共有 20 筆資料</p>

@@ -2,12 +2,12 @@
 
 import WishBox from "@components/WishBox/WishBox";
 import SearchResult from "@components/SearchResult/SearchResult";
-import SearchProfile from "@components/SearchProfile/SearchProfile";
+import ExploreProfile from "@/components/ExploreProfile/ExploreProfile";
 
 const CareerProfilePage = () => {
   return (
     <div>
-      <SearchProfile />
+      <ExploreProfile />
       <div className="flex w-full">
         <div></div>
         <SearchResult />

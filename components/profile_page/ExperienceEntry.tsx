@@ -2,13 +2,20 @@ import React from "react";
 import Image from "next/image";
 
 interface Props {
+  isEditable?: boolean;
   imgSrc?: string;
   experience?: string;
   occupation?: string;
   period?: string;
 }
 
-const ExperienceEntry = ({ imgSrc, experience, occupation, period }: Props) => {
+const ExperienceEntry = ({
+  isEditable,
+  imgSrc,
+  experience,
+  occupation,
+  period,
+}: Props) => {
   return (
     <div className="flex items-center w-full h-28 md:h-32 pl-5 md:pl-7 gap-4 md:gap-6 border-b border-[#D7D8D9]">
       <div className="relative w-16 h-16 rounded-md overflow-hidden">
@@ -24,6 +31,7 @@ const ExperienceEntry = ({ imgSrc, experience, occupation, period }: Props) => {
         <h6 className="text-xs">{occupation ?? "職位"}</h6>
         <p className="text-xs">{period ?? "時間"}</p>
       </div>
+      {isEditable && <></>}
     </div>
   );
 };

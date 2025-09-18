@@ -11,7 +11,7 @@ const Page = () => {
       <SearchBar></SearchBar>
       <PersonInfo />
       <div className="flex flex-col h-auto py-10 gap-8 items-center">
-        <ExperienceBox type="工作經驗">
+        <ExperienceBox type="工作經驗" isEditable={false}>
           <ExperienceEntry
             experience="IBM"
             occupation="Product Marketing Specialist"
@@ -20,14 +20,14 @@ const Page = () => {
           <ExperienceEntry />
         </ExperienceBox>
 
-        <ExperienceBox type="實習經驗">
+        <ExperienceBox type="實習經驗" isEditable={false}>
           <ExperienceEntry />
           <ExperienceEntry />
         </ExperienceBox>
 
-        <ExperienceBox type="社團經驗"></ExperienceBox>
+        <ExperienceBox type="社團經驗" isEditable={false}></ExperienceBox>
 
-        <ExperienceBox type="其他經驗">
+        <ExperienceBox type="其他經驗" isEditable={false}>
           <ExperienceEntry />
         </ExperienceBox>
       </div>
